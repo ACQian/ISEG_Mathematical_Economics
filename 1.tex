@@ -524,8 +524,8 @@ Proposition:
     $A'$ of the sequence: $\{-1,1\}$
 }
 \dfn[]{Cauchy sequence}{
-    $(u_n)_n$ is a sequence in $\bbR$. We say that $(u_n)_n$ is a Cauchy sequence if $\forall\epsilon>0, \exists n_0\in\bbN$,
-    $\forall m,n\geq n_0, |u_n-u_m|<\epsilon$.\\
+    $(u_n)_n$ is a sequence in $\bbR$. We say that $(u_n)_n$ is a Cauchy sequence if $\forall\epsilon>0, \exists n_0\in\bbN$: 
+    $\forall m,n\geq n_0, d(x_n,x_m) = |u_n-u_m|<\epsilon$.\\
     The difference between two terms is as small as I want.
 }
 Informally, $(u_n)_n$ convergent but when the limit is not in the space.
@@ -534,7 +534,24 @@ Informally, $(u_n)_n$ convergent but when the limit is not in the space.
     $u_n = \frac{1}{n}$\\
     $(u_n)_n$ is a Cauchy sequence that is not (or could be) convergent.
 }
-Sequence is very close each order but could converge or not.
+Sequence is very close each order but could converge or not.\bigskip\\
+\textbf{Proposition: } (X,d) metric space\\
+If X is compact, then any Cauchy sequence converges.\bigskip\\
+\textbf{Remark: }\\
+X is compact $\Rightarrow$ It "includes" all possible limits of subsequences of $(u_n)_n$.
+\dfn[]{Complete}{
+    (X,d) metric space\\
+    We say that X is complete if any Cauchy sequence in X converges.
+}
+\textbf{Remark: }
+\begin{enumerate}
+    \item X is compact $\Rightarrow$ X is complete.
+    \item $\bbR$ is complete, however it is not compact.
+\end{enumerate}
+
+\section{Continuity}
+
+
 
 %\dfn{Definition Topic}{Definition Statement}
 %\thm{Theorem Name}{Theorem Statement}
