@@ -550,8 +550,61 @@ X is compact $\Rightarrow$ It "includes" all possible limits of subsequences of 
 \end{enumerate}
 
 \section{Continuity}
+$f: D_f \to \bbR, D_f\subset\bbR$\\
+a is accumulation point of f. $a\in D_f \rightarrow$ f is continuous if and only if $\lim_{x\to a} f(x) = f(a)$.
+\dfn[]{Continuity (Heine)}{
+    $(X,d_1), (Y,d_2)$ metric spaces\bigskip\\
+    $f: X \rightarrow Y, a\in X$\\
+    f is continuous $\Leftrightarrow$ 
+    $\begin{cases}
+        (x_n)_n \text{ is a squence in X}\\
+        x_n\rightarrow a
+    \end{cases}$
+    $\Leftrightarrow f(x_n)$ is a sequence in Y and $f(x_n)\rightarrow f(a)$.
+}
+\ex[]{Continuity}{
+    $f: \begin{cases}
+        \bbR^2\to\bbR\\
+        (x,y)\to e^x+y
+    \end{cases}$\bigskip\\
+    $f$ is continuous because $e^x$ and $y$ are continuous. It is the sum of continuous maps.
+}
+\ex[]{Continuity}{
+    $f: \begin{cases}
+        \bbR\textbackslash\{0\}\to\bbR\\
+        x\to \frac{1}{x}
+    \end{cases}$\bigskip\\
+    $f$ is continous because $\frac{1}{x}$ is continuous in its domain.
+}
+\ex[]{Continuity}{
+    $f: \begin{cases}
+        \bbR^2\textbackslash\{(x,0),x\in\bbR\}\to\bbR\\
+        (x,y)\to \frac{x^2}{y}
+    \end{cases}$\bigskip\\
+    
+    $(u_n)_n = (\frac{1}{n},\frac{1}{n})\to(0,0)$\\
+    $(v_n)_n = (\frac{1}{n},\frac{1}{n^2})\to(0,0)$\bigskip\\
 
+    $f(u_n) = \frac{(\frac{1}{n})^2}{\frac{1}{n}} = \frac{1}{n}\to 0$\\
+    $f(v_n) = \frac{(\frac{1}{n})^2}{\frac{1}{n^2}} = 1\to 1$\bigskip\\
+    $f$ is not continuous at (0,0) because the limit depends on the path.
 
+}
+\textbf{Proposition: }$(X,d_1), (Y,d_2)$ metric spaces\\
+$f: X\rightarrow Y$ is continous. If $k\subset X$ is compact, then $f(k)$ is a compact set of Y.
+\thm[]{Weierstrass Theorem}{
+    $(\bbR^n, d)$ metric space\bigskip\\
+    $f: \begin{cases}
+        \bbR^n\to\bbR \text{ continuous}\\
+        k\text{ is a compact set}
+    \end{cases}$\\
+    $\Downarrow$\\
+    $f(k)$ has a maximum and a minimum. $f(k)$ is closed and bounded.
+}
+\thm[]{Intermediate Value Theorem}{
+    $f: [a,b]\to[c,d]$ is continuous\\
+    Im$(f) = [c,d]$
+}
 
 %\dfn{Definition Topic}{Definition Statement}
 %\thm{Theorem Name}{Theorem Statement}
