@@ -606,6 +606,194 @@ $f: X\rightarrow Y$ is continous. If $k\subset X$ is compact, then $f(k)$ is a c
     Im$(f) = [c,d]$
 }
 
+\section{Fixed point theorems}
+$(X, d)$ metric spaace.\\
+$f: X\to X$
+\dfn[]{Fixed point}{
+    $x_0\in X$ is a fixed point if $f(x_0) = x_0$.\\
+    $x_0\in X$ is a K-periodic point if $f^K(x_0) = x_0$ and $f'(x_0) \neq x_0, \forall j = 1,\cdots, k-1$.\bigskip\\
+    \textbf{Note: }$f^K = \underbrace{f\circ f\circ\cdots\circ f}_{K\text{ times}}$
+}
+\ex[]{Fixed point}{
+    $f: \begin{cases}
+        \bbR\to\bbR\\
+        x\to x^2
+    \end{cases}$\bigskip\\
+    $x_0 = 0$ is a fixed point because $f(0) = 0^2 = 0$.\\
+    $x_0 = 1$ is a fixed point because $f(1) = 1^2 = 1$.
+}
+\ex[]{Fixed point}{
+    $f: \begin{cases}
+        [0,1]\to [0,1]\\
+        x\to 1-x
+    \end{cases}$\bigskip\\
+    $x_0 = \frac{1}{2}$ is a fixed point because $f(\frac{1}{2}) = 1-\frac{1}{2} = \frac{1}{2}$.\bigskip\\
+    $f[f(0.25)] = f[0.75] = 0.25\rightarrow f^2(0.25) = 0.25$\\
+    $f[f(0.1)] = f[0.9] = 0.1\rightarrow f^2(0.1) = 0.1$\\
+    $\forall x\in[0,1]\textbackslash\{\frac{1}{2}\}, f^2(x) = x\rightarrow$ every point except $\frac{1}{2}$ is a 2-periodic point.\\
+    $\text{Per}_2(f) = [0,1]\textbackslash\{\frac{1}{2}\}$\bigskip\\
+    \textbf{Remark: }$\frac{1}{2}$ is not 2-periodic because it is a fixed point.9
+}
+\ex[]{Fixed point}{
+    $R_\theta: \begin{cases}
+        \bbR^2\to\bbR^2\\
+        (x,y)\to R_\theta(x,y)\\
+        \theta\in(0,2\pi)
+    \end{cases}$\bigskip\\
+    $R_\theta$ is a rotation of angle $\theta$ around the origin.\\
+    $R_\theta$ has a unique fixed point which is the origin $\Rightarrow$ $\text{Fix}(R_\theta) = \{(0,0)\}$.
+}
+\ex[]{Fixed point}{
+    $f: \begin{cases}
+        \bbR\to\bbR\\
+        x\to \begin{cases}
+            3x, x<\frac{1}{2}\\
+            3-3x, x\geq\frac{1}{2}
+            \end{cases}
+    \end{cases}$\bigskip\\
+    $f(x) = 3x\Rightarrow x = 3x\Rightarrow x=0$\\
+    $f(x) = 3-3x\Rightarrow x = 3-3x\Rightarrow x=\frac{3}{4}$\\
+    0 and $\frac{3}{4}$ are the only fixed points of f $\Rightarrow\text{Fix}(f) = \{0,\frac{3}{4}\}$\\
+}
+\dfn[]{Lipschitz contraction}{
+    $f: \begin{cases}
+        X\to X\text{ is a map}\\
+        (X,d)\text{ metric space}
+    \end{cases}$\bigskip\\
+    f is a contraction if there exists $0\leq k<1$ such that $d(f(x),f(y))< K\cdot d(x,y),\forall x,y\in X$.\bigskip\\
+    \textbf{Remark: } K is called the Lipschitz constant, it is the ratio of contraction.
+}
+\ex[]{Contraction}{
+    $f: \begin{cases}
+        \bbR\to\bbR\\
+        x\to \frac{1}{2}x
+    \end{cases}$\bigskip\\
+    $|f(x)-f(y)| = |\frac{1}{2}x-\frac{1}{2}y| = \frac{1}{2}|x-y|$\\
+    $\therefore f$ is a contraction with $K=\frac{1}{2}$.
+}
+In general, to prove that $f$ is a contraction is a difficult task. That is why the next result will be useful in the sequel.
+\lem{Contraction}{
+    $f: \bbR^n\to\bbR^n$ is a differentiable map.\\
+    If the eigenvalues of the Jacobian matrix $Df(x)$ have modules less than1, then $f$ is a contraction.\bigskip\\
+    \textbf{Reminder: } The Jacobian matrix is the matrix of partial derivatives.\\
+    $Df(x) = \left[
+        \begin{array}{cc}
+        \frac{\partial f_1}{\partial x} & \frac{\partial f_1}{\partial y}\\
+        \frac{\partial f_2}{\partial x} & \frac{\partial f_2}{\partial y}
+    \end{array}
+    \right]$
+}
+\ex[]{Contraction}{
+    $f: \begin{cases}
+        \bbR^2\to\bbR^2\\
+        (x,y)\to(-\frac{1}{2}x, \frac{y}{3})
+    \end{cases}$\bigskip\\
+    $Df(x,y) = \left[
+        \begin{array}{cc}
+        -\frac{1}{2} & 0\\
+        0 & \frac{1}{3}
+    \end{array}
+    \right]$\\
+    Since the Jacobian matrix is diagonal, the eigenvalues are $\lambda_1 = -\frac{1}{2}, \lambda_2 = \frac{1}{3}$.\\
+    And since both have modules less than 1.\\
+    $\therefore f$ is a contraction.
+}
+\nt{
+    Eigenvalues of $A\in M_{n\times n}(\bbR)$ are the roots of the characteristic polynomial $P_A(\lambda) = \text{det}(A-\lambda I)$.
+}
+\thm{Banach Theorem}{
+    If
+    \begin{itemize}
+        \item $(X,d)$ is a complete metric space.
+        \item $f: X\to X$ is a contraction.
+    \end{itemize}
+    then $f$ has a \textbf{unique} fixed point.
+}
+\begin{proof}
+    \textbf{Unicity} of the fixed point\\
+    Suppose that we have two fixed points $A\neq B$.\\
+    Since $f$ is a contraction, then $d(A,B) = d(f(A), f(B)) < K\cdot d(A,B)$ with $0\leq K<1$.\\
+    $\therefore d(A,B) < d(A,B)$ which is a contradiction.
+\end{proof}
+\begin{proof}
+    \textbf{Existence} of the fixed point\\
+    $x_0\in X$ define the sequence $x_n = f^n(x_0)$\\
+    $(x_n)_n$ is a Cauchy sequence $\underbrace{\Rightarrow}_{x\text{ is complete}}$ $(x_n)_n$ converges to the fixed point.
+\end{proof}
+\nt{The distance decreases each time you composite with f.}
+\ex[]{Banach}{
+    $f: \begin{cases}
+        \bbR\to\bbR\\
+        x\to x^2
+    \end{cases}$\bigskip\\
+    $|f'(x)| = |2x| \not< 1\Rightarrow$ not a contraction.\\
+    $\therefore$ Banach theorem does not apply.
+}
+\ex[]{Banach}{
+    $f: \begin{cases}
+        [-\frac{1}{3},\frac{1}{3}]\to\bbR\\
+        x\to x^2
+    \end{cases}$\bigskip\\
+    $|f'(x)| = |2x|\leq \frac{2}{3}< 1\Rightarrow$ f is a contraction.\\
+    $\therefore$ Banach theorem applies and f has a unique fixed point.\bigskip\\
+    $x = x^2\Rightarrow x(x-1) = 0\Rightarrow x = 0,1$\\
+    Since $1\not\in[-\frac{1}{3}, \frac{1}{3}]$, the unique fixed point is 0.
+}
+\ex[]{Banach}{
+    $f: \begin{cases}
+        B_r(0,0)\to\bbR^2\\
+        x\to \lambda x, \lambda\in(0,1)
+    \end{cases}$\\
+    \begin{itemize}
+        \item $B_r(0,0)$ is complete because it is compact (closed and bounded).
+        \item $f$ is a contraction because $|f'(x)| = |\lambda|<1$.
+    \end{itemize}
+    $\therefore$ Banach theorem applies and f has a unique fixed point at the origin. $\Rightarrow$ Fix$(f) = \{(0,0)\}$
+}
+\nt{
+    $f: x\to x$ is a contraction of ratio $K$. Then $f$ is a contraction of ratio $\tilde{K}\in(K,1)$.
+}
+\textbf{Remark: }\\
+$(x_0, y_0) \in\bbR^2$. If I take any point $Q$, then $\lim_{n\rightarrow\infty} f^n(Q) = P$ where $P$ is the unique fixed point of $f$.
+This means that the fixed point is an attractor of the map.
+\thm[]{Brouwer fixed point theorem}{
+    If
+    \begin{itemize}
+        \item $f: D_f\to D_f$ is a continuous map
+        \item $D_f$ is compact and convex
+    \end{itemize}
+    then, $f$ has a fixed point, but not necessarily unique.
+}
+\ex[]{Brouwer}{
+    $f: \begin{cases}
+        [0,1]\to[0,1]\\
+        x\to x^2
+    \end{cases}$
+    \begin{itemize}
+        \item $[0,1]$ is compact and convex.
+        \item $f$ is continuous (polynomial).
+    \end{itemize}
+    $\therefore$ Brouwer theorem applies and f has at least one fixed point.\bigskip\\
+    $x = x^2\Rightarrow x(x-1) = 0\Rightarrow x = 0,1$\\
+    $\therefore$ Fix$(f) = \{0,1\}$\bigskip\\
+    \textbf{Sidenote: } Interval is always convex.
+}
+\ex[]{Brouwer}{
+    $f: \begin{cases}
+        A\to A\\
+        (x,y) \to R_{\frac{\pi}{2}}(x,y)\\
+        A = \{(x,y)\in\bbR^2 : 1\leq x^2+y^2\leq 4\}
+    \end{cases}$
+    \begin{itemize}
+        \item $A$ is compact but not convex.
+        \item $f$ is continuous (rotation).
+    \end{itemize}
+    $\therefore$ Brouwer theorem does not apply and f has no fixed point.\bigskip\\
+    $R_{\frac{\pi}{2}}(x,y) = (x,y)$ has no solution $\Rightarrow$ Fix$(f) = \emptyset$
+}
+
+
+
 %\dfn{Definition Topic}{Definition Statement}
 %\thm{Theorem Name}{Theorem Statement}
 %\cor[cori]{Corollary Name}{Corollary Statement}
