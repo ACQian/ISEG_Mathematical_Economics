@@ -790,15 +790,20 @@ This means that the fixed point is an attractor of the map.
     \end{itemize}
     $\therefore$ Brouwer theorem does not apply and f has no fixed point.\bigskip\\
     $R_{\frac{\pi}{2}}(x,y) = (x,y)$ has no solution $\Rightarrow$ Fix$(f) = \emptyset$
+
+    \center{\includegraphics[scale=0.5]{Images/1.png}}
 }
 
 \dfn[]{Hyperplane}{
     Hyperplane in $\bbR^n$ is a plane of dimension $n-1$ that divides $\bbR^n$ into semi planes.
 }
 \begin{itemize}
-    \item Hyperplane in $\bbR^1$ is a point. 
-    \item Hyperplane in $\bbR^2$ is a line that divides the plane into two half-planes.
-    \item Hyperplane in $\bbR^3$ is a plane that divides the space into two half-spaces.
+    \item Hyperplane in $\bbR^1$ is a point.\\
+        \includegraphics[scale=0.4]{Images/2.png}
+    \item Hyperplane in $\bbR^2$ is a line that divides the plane into two half-planes.\\
+        \includegraphics[scale=0.4]{Images/3.png}
+    \item Hyperplane in $\bbR^3$ is a plane that divides the space into two half-spaces.\\
+        \includegraphics[scale=0.4]{Images/4.png}
 \end{itemize}
 \thm[]{Hyperplane theorem}{
     If
@@ -808,21 +813,30 @@ This means that the fixed point is an attractor of the map.
     \end{itemize}
     then $A,B$ can be separated by a hyperplane.
 }
+\ex[]{Hyperplane}{
+    Separated by a line. \includegraphics[scale=0.5]{Images/5.png}
+}
+\ex[]{Hyperplane}{
+    \includegraphics[scale=0.5]{Images/6.png}\\
+    Separation theorem cannot be applied because B is not convex.
+}
+
 \dfn[]{Correspondence}{
-    $A, B$ sets.\\
+    $A, B$ sets $\subseteq\bbR$\\
     $f: A\to B$ map\\
     $F: A \rightrightarrows B$\\
-    $\{(x, F(x)), x \in A, F(x) \subset B\}$
+    $\{(x, F(x)), x \in A, F(x) \subset B\}$\\
+    \includegraphics[scale=0.3]{Images/7.png}
 }
 
 \ex[]{Corrrespondence}{
     $F: \bbR \rightrightarrows \bbR$\\
 
     $x \to \begin{cases}
-        [1,3], x\leq 1\\
-        \{2\}, x>1
-    \end{cases}$\bigskip\\
-
+        [1,3] & x\leq 1\\
+        \{2\} & x>1
+    \end{cases}$\\
+    \includegraphics[scale=0.5]{Images/8.png}\\
     $F(\{7\}) = \{2\}$\\
     $F(\{-3\}) = [1,3]$
 }
@@ -830,23 +844,147 @@ This means that the fixed point is an attractor of the map.
     $G: \bbR \rightrightarrows \bbR$\\
 
     $G(x) = \begin{cases}
-        [x-7, x-5] & ,x<0\\
-        (6,9) & ,x=0\\
-        (x+7, x+8] & ,x>0
-    \end{cases}$
+        [x-7, x-5] & x<0\\
+        (6,9) & x=0\\
+        (x+7, x+8] & x>0
+    \end{cases}$\bigskip\\
+
+    \includegraphics[scale=0.5]{Images/9.png}
+}
+\ex[]{Correspondence}{
+    $f: [0,1]\rightrightarrows[0,1]$\\
+
+    $x\to \begin{cases}
+        [0,1] & x=0\\
+        \{\frac{1}{2}\} & 0<x<1\\
+        [0,\frac{1}{2}] & x = 1
+    \end{cases}$\bigskip\\
+    \includegraphics[scale=0.5]{Images/10.png}
+}
+\ex[]{Correspondence}{
+    Important for confidence interval construction of financial data.\bigskip\\
+    \includegraphics[scale=0.5]{Images/11.png}
 }
 
 \dfn[]{Closed graph property}{
     $F: A \rightrightarrows B$ a correspondence, $x\in A$.\\
     
-    We say that $F$ has the closed graph property at $x$ if for any sequence $(x_n)_n$ of element in the graph $F$,
+    We say that $F$ has the closed graph property at $x$ if for any converging sequence $(x_n,y_n)_n$ of element in the graph $F$,
     its limit belongs to the graph of $F$.\\
     We say that $F$ has the closed graph property if it has the property above for all $x\in A$.
 }
-\textbf{Proposition: }\\
-$F: A\rightrightarrows B$ correspondence. If graph $F$ is compact, then $F$ has the closed graph property.
+\ex[]{Closed graph property}{
+    \includegraphics[scale=0.5]{Images/12.png}\\
+
+    F does not have the closed graph property because the graph of F is not closed.
+}
+\textbf{Proposition: }$F: A\rightrightarrows B$ correspondence. If graph $F$ is \textbf{compact}, then $F$ has the closed graph property.\\
 
 
+$f: \bbR\to\bbR, x\to f(x)$. $f$ is continuous at $x=a\in\bbR$, if and only if $\lim_{x\to a}f(x)=f(a)$.
+Equivalently, $f$ is continuous at $x=a$ if and only if for any open set $u$ containing $f(a)$, $f^{-1}(u)$ is an open set containg $a$.
+\ex[]{Continuity}{
+    \includegraphics[scale=0.5]{Images/13.png}
+}
+\ex[]{Continuity}{
+    \includegraphics[scale=0.5]{Images/14.png}
+    $u$ open set containing $f(5)=\frac{1}{2}$, $f^{-1}(u)=[5,\infty)$ is not an open set containing 5.
+}
+We are now going to generalize the notion of continuity for correspondence.
+\dfn[]{Hemi-continuity}{
+    $A, B \subseteq\bbR, a\in A$\\
+    $F: A\rightrightarrows B$ is a correspondence\\
+
+    We say that $F$ is upper hemi-continuous at $x=a$ if for all open set $u$ containing $f(a)$, 
+    its pre-image $F^{-1}(u)$ is an open set containing a.
+    The correspondence $F$ is upper hemi-continuous if the above property holds for every $a\in A$.
+}
+\ex[]{Hemi-continuity}{
+    \includegraphics[scale=0.5]{Images/15.png}\\
+
+    $f(\{5\})=[0,6]$\\
+    $f$ is upper hemi-continuous.
+}
+\ex[]{Hemi-continuity}{
+    $f: [0,1]\rightrightarrows [0,1]$\\
+
+    $x\to 
+    \begin{cases}
+        [0,1] & x\neq\frac{1}{2}\\
+        \frac{1}{2} & x=\frac{1}{2}
+    \end{cases}$\bigskip\\
+
+    \includegraphics[scale=0.5]{Images/16.png}\\
+
+    $u$ open set containing $f(\frac{1}{2})=\frac{1}{2}$\\
+    $f^{-1}(u) = \{\frac{1}{2}\}$ is not an open set. $\Rightarrow$ $f$ is not hemi-continuous.
+}
+
+\thm[]{Kakutani fixed point theorem}{
+    \begin{itemize}
+        \item $A, B \subseteq\bbR^n \text{ convex and compact}$
+        \item $F: A\rightrightarrows B$
+    \end{itemize}
+    If
+    \begin{enumerate}
+        \item $F$ is upper hemi-continuous
+        \item $F(x)$ is convex, $\forall x\in A$
+    \end{enumerate}
+    then $F$ has at least one fixed point.
+}
+\textbf{Remark:}
+\begin{itemize}
+    \item This theorem is a generalization of the Brouwer fixed point theorem.
+    \item The second property of Kakutani fixed point theorem means that correpondence cannot have the follwing behavior\bigskip\\
+        \includegraphics[scale=0.4]{Images/17.png}
+\end{itemize}
+\ex[]{Kakutani}{
+    $F: [0,2]\rightrightarrows [0,2]$\\
+
+    $x\to
+    \begin{cases}
+        \{1\} & 0\leq x<1\\
+        [1,2] & x=1\\
+        \{2\} & 1<x\leq 2
+    \end{cases}$\bigskip\\
+
+    \includegraphics[scale=0.5]{Images/18.png}\\
+    
+    Fix $F = \{1,2\}$
+}
+\ex[]{Kakutani}{
+    $F: [0,20]\rightrightarrows [0,20]$\\
+
+    $x\to
+    \begin{cases}
+        10-x & 0\leq x<7\\
+        [3,20] & x=7\\
+        x-4 & 7<x\leq 20
+    \end{cases}$\bigskip\\
+
+    \includegraphics[scale=0.5]{Images/19.png}\\
+
+    $10 - x = x \leftrightarrow x=5$\\
+    $F$ is a fixed point because $\{F\}\subset F(\{7\})$\\
+    Fix $F = \{5,7\}$
+}
+
+Hemi-continuous is hard to prove for the Kakutani theorem, thus we have the following \textbf{proposition}:
+$F: A\rightrightarrows B$ correspondence. 
+If $F$ has the closed graph property, then $F$ is upper hemi-continuous.
+The scheme is as the following: Graph $F$ is compact $\Rightarrow$ Graph $F$ has the closed graph property $\Rightarrow$ $F$ is upper hemi-continous.
+
+\section{What is necessary to know in this chapter?}
+\begin{enumerate}
+    \item Functions, sequences, cardinality, continuity
+    \item Typology in $\bbR^n$
+    \item Hyperplane separation theorem
+    \item Weierstrass theorem
+    \item Intermediate value theorem
+    \item Banach fixed point theorem
+    \item Brouwer fixed point theorem
+    \item Kakutani fixed point theorem
+\end{enumerate}
 
 %\dfn{Definition Topic}{Definition Statement}
 %\thm{Theorem Name}{Theorem Statement}
