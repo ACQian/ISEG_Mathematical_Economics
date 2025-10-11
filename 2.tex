@@ -37,6 +37,296 @@ If $f: u\to\bbR$ is a smooth map, it is not necessarily true that $f$ has a maxi
 However, if $f: K\to\bbR, K\subseteq\bbR^n$ where $K$ is compact, then $f$ has a maximum and minimum (\textbf{Weierstrass theorem}).
 
 \section{Formal definition}
+\dfn[]{Minimizer / Maximinzer}{
+    If $f: u\to\bbR, u\subseteq\bbR^n, x_0\in u$.
+    \begin{enumerate}
+        \item We say that $x_o$ is a \textbf{global} minimizer of $f$ if $f(x_o)\leq f(x), \forall x\in u$
+        \item We say that $x_o$ is a \textbf{local} minimizer of $f$ if there exists a neighborhood of $v$ such that $\forall x\in v, f(x_0)\leq f(x)$
+    \end{enumerate}
+    We can define analogously the global maximizer and local maximizer.
+}
+\includegraphics[scale=0.4]{Images/23.png} A is a local minimum and B is a global minimum.
+
+\ex[]{Minimizer}{
+    \noindent
+    \begin{equation*}
+        \begin{split}
+            f: & \quad \bbR\to\bbR\\
+            & \quad x\to 4x^2-4x+1
+        \end{split}
+    \end{equation*}
+    \includegraphics[scale=0.4]{Images/24.png}\\
+
+    $\frac{1}{2}$ is a global minimizer\\
+    $f(\frac{1}{2})=0$ is the minimum\\
+    $f$ does not have a maximum
+}
+\ex[]{Maximizer}{
+    \noindent
+    \begin{equation*}
+        \begin{split}
+            f: & \quad \bbR^2\to\bbR\\
+            & \quad (x,y)\to 1-x^2-y^2
+        \end{split}
+    \end{equation*}
+    \includegraphics[scale=0.4]{Images/25.png}\\
+
+    $(0,0)$ is the global maximizer\\
+    1 is the global maximum
+}
+
+\section{Optimization: how to compute maximizer / minimizer?}
+\begin{equation*}
+    \begin{split}
+        f: & \quad u\to\bbR, u\subseteq\bbR^n\\
+        & \quad (x_1,\ldots,x_n)\to f(x_1,\ldots,x_n)
+    \end{split}
+\end{equation*}
+
+\begin{equation*}
+    \underbrace{\text{J}_f(x_1,\ldots,x_n)}_{\text{Jacobian Maxtrix}} = \left[\frac{\partial f}{\partial x_1}(x_1,\ldots,x_n) \cdots \frac{\partial f}{\partial x_n}(x_1,\ldots,x_n)\right]_{1\times n}
+\end{equation*}
+
+\textbf{Gradient} of $f$ is 
+\begin{equation*}
+    \nabla f(x_1,\ldots,x_n) = \left(\frac{\partial f}{\partial x_1}(x_1,\ldots,x_n) \cdots \frac{\partial f}{\partial x_n}(x_1,\ldots,x_n)\right)
+\end{equation*}
+and the \textbf{critical points} of $f$ are the zeros of $\nabla f(x_1,\ldots,x_n) \Leftrightarrow \nabla f(x_1,\ldots,x_n)=\vec{0}$
+
+\ex[]{Critical point}{
+    \noindent
+    \begin{equation*}
+        \begin{split}
+            f: & \quad \bbR^2\to\bbR\\
+            & \quad (x,y)\to 1-x^2-y^2
+        \end{split}
+    \end{equation*}
+
+    Finding the gradient: $\nabla f(x_1,\ldots,x_n) = (-2x;-2y)$\\
+    Finding the zeros of the gradient: $\nabla f(x_1,\ldots,x_n) = (0,0) \Leftrightarrow 
+    \begin{cases}
+        -2x = 0\\
+        -2y = 0
+    \end{cases} \Leftrightarrow
+    \begin{cases}
+        x = 0\\
+        y= 0
+    \end{cases}\\ \Rightarrow (0,0)$ is the unique crtical point of $f$ 
+}
+
+\textbf{Proposition:} Under the following conditions
+\begin{itemize}
+    \item $f: D_f\to\bbR, D_f\subseteq\bbR^n$
+    \item $x_0\in\text{int}(D_f)$
+\end{itemize}
+If $x_0$ is an extremum (maximum or a minimum), then $x_0$ is a critical point.
+\wc[]{The reverse of the proposition}{
+    The reverse is not true. For example, $f(x) = x^3 \Rightarrow f'(x)=3x^2$. $f'(x)=0 \Leftrightarrow x=0$. $\{0\}$ is not a critical point but rather a saddle point.
+}
+The previous result gives \textbf{candidates} for maximizer or minimizer. Now, another question occers: how do we check that the critical point is a maximizer or minimizer?
+
+\begin{gather*}
+    f: \quad u\to\bbR, u\subseteq\bbR^n\\
+    \nabla f(x_1,\ldots,x_n) = \left(\frac{\partial f}{\partial x_1}(x_1,\ldots,x_n) \cdots \frac{\partial f}{\partial x_n}(x_1,\ldots,x_n)\right)\\
+    \underbrace{\text{H}_f(x_1,\ldots,x_n)}_{\text{Hessian Matrix}} = 
+    \left[\begin{array}{cccc}
+        \frac{\partial^2 f}{\partial x_1\partial x_1} & \frac{\partial^2 f}{\partial x_2\partial x_1} & \cdots & \frac{\partial^2 f}{\partial x_n\partial x_1}\\
+        \vdots & \ddots & & \vdots\\
+        \vdots & & \ddots & \vdots\\
+        \frac{\partial^2 f}{\partial x_n\partial x_1} & \cdots & \cdots & \frac{\partial^2 f}{\partial x_n\partial x_n}
+    \end{array}\right]_{n\times n}
+\end{gather*}
+
+\ex[]{Hessian matrix}{
+    \noindent
+    \begin{equation*}
+        \begin{split}
+            f: & \quad \bbR^2\to\bbR\\
+            & \quad (x,y)\to 1-x^2-y^2
+        \end{split}
+    \end{equation*}\\
+    $\text{J}_f(x,y) = (-2x, -2y)$\\
+
+    $\text{H}_f(x,y) = 
+    \left[
+        \begin{array}{cc}
+            -2 & 0\\
+            0 & -2
+        \end{array}
+    \right]$
+}
+\thm[]{Schwarz theorem}{
+    If $f$ is $C^2$, differentiable twice, then $\frac{\partial^2 f}{\partial x\partial y} = \frac{\partial^2 f}{\partial y\partial x}$.
+}
+In particular, the this result forces the Hessian matrix to be symmetric, $A^T = A$.
+\begin{equation*}
+    \text{H}_f(x_1,\ldots,x_n)^T = \text{H}_f(x_1,\ldots,x_n)
+\end{equation*}
+where $\text{H}_f$ defines a quadratic form.
+
+\section{Quadratic forms in $\bbR^n$}
+Sum of monomials of degree 2 in $\bbR^n$.
+\pr[]{Is it a quadratic form?}{
+    $\bbR: (x)$
+    \begin{itemize}
+        \item $P(x) = 7x^2 \to$ It is a quadratic form
+        \item $Q(x) = 3 + 7x^2 \to$ Not a quadratic form because 3 is not of degree 2
+    \end{itemize}
+    $\bbR^2: (x,y)$
+    \begin{itemize}
+        \item $P(x) = 7x^2 + 8xy \to$ It is a quadratic form
+        \item $Q(x) = 3^2x + y^2 \to$ Not a quadratic form because the first term is not of degree 2
+    \end{itemize}
+    $\bbR^3: (x,y,z)$
+    \begin{itemize}
+        \item $P(x) = 7x^2 + 8xy + \sqrt{2}y^2 \to$ It is a quadratic form
+    \end{itemize}
+}
+To generalize, $\displaystyle\bbR^n(x_1,\ldots,x_n) : P(x_1,\ldots,x_n) = \sum_{i,j\in\{1,\ldots,n\}}c_{ij}x_ix_j$ is a quadratic form.\\
+
+Associated to the quadratic form $Q$ in $\bbR^n$, we may define a matrix $A$ such that
+\begin{equation}
+    Q(x_1,\ldots,x_n) = [x_1\cdots x_n]A\left[\begin{array}{c}
+        x_1\\
+        \vdots\\
+        x_n
+    \end{array}\right], A\in \text{M}_{n\times n}(\bbR)
+\end{equation}
+
+\ex[]{A matrix}{
+    $P(x,y) = 3x^2+8xy+5y^2$\\
+
+    $P(x,y) = [x\quad y]\left[
+        \begin{array}{cc}
+            3 & 5\\
+            3 & 5
+        \end{array}
+    \right]
+    \left[\begin{array}{c}
+        x\\
+        y
+    \end{array}\right]$\\
+
+    $P(x,y) = [x\quad y]\left[
+        \begin{array}{cc}
+            3 & 8\\
+            0 & 5
+        \end{array}
+    \right]
+    \left[\begin{array}{c}
+        x\\
+        y
+    \end{array}\right]$
+}
+There are infinitely many matrices $A$ such that equation (2.1) holds. However, just one is symmetric. For the previous example
+\begin{equation*}
+    P(x,y) = [x\quad y]\left[
+        \begin{array}{cc}
+            3 & 4\\
+            4 & 5
+        \end{array}
+    \right]
+    \left[\begin{array}{c}
+        x\\
+        y
+    \end{array}\right]
+\end{equation*}
+Trick is to put the coefficient of the squared terms on the diagonal and the coefficient divided by two for the cross terms to fill in the rest of the matrix.
+\pr[]{What is the symmatric matrix $A$?}{
+    $P(x,y,z) = x^2 + 8xy - y^2 - 3xz + 10z^2$\\
+
+    $A 
+    = \left[\begin{array}{ccc}
+        x^2 & xy & xz\\
+        yx & y^2 & yz\\
+        zx & zy & z^2
+    \end{array}\right]
+    = \left[\begin{array}{ccc}
+        1 & 4 & -\frac{3}{2}\\
+        4 & -1 & 0\\
+        -\frac{3}{2} & 0 & 10
+    \end{array}\right]$
+}
+
+\subsection{Classification of quadratic forms in $\bbR^n$}
+$Q : $ a quadratic form
+\dfn[]{$Q$ classifications}{
+    \begin{enumerate}
+        \item $Q$ is positively defined (P.D.) if $\,\forall x\in\bbR^n\textbackslash\{\vec{0}\}\quad Q(x)>0$
+        \item $Q$ is negatively defined (N.D.) if $\,\forall x\in\bbR^n\textbackslash\{\vec{0}\}\quad Q(x)<0$
+        \item $Q$ is semi-positively defined (S.P.D.) if $\,\forall x\in\bbR^n\quad Q(x)\geq0\quad\exists y\in\bbR^n\textbackslash\{\vec{0}\} : Q(y) = 0$
+        \item $Q$ is semi-negatively defined (S.N.D) if $\,\forall x\in\bbR^n\quad Q(x)\leq0\quad\exists y\in\bbR^n\textbackslash\{\vec{0}\} : Q(y) = 0$
+        \item $Q$ is undefined (UND.) if $\,\exists x,y\in\bbR^n : Q(x)=0, \,Q(y) = 0$
+    \end{enumerate}
+}
+\ex[]{$Q$ classifications}{
+    \begin{enumerate}
+        \item $Q(x,y) = x^2+3y^2 \to$ is P.D.
+        \item $Q(x,y) = -3x^2-7y^2 \to$ is N.D.
+        \item $Q(x,y) = \underbrace{(x-y)^2}_{\geq 0} \to$ is S.P.D. since $Q(1,1) = 0$
+        \item $Q(x,y) = -(7x-y)^2 \to$ is S.N.D.
+        \item $Q(x,y) = x^2-y^2 \to$ is UND. since $Q(1,0) = 1$ and $Q(0,1)=-1$
+    \end{enumerate}
+}
+In general, just by observing the quadratic forms is difficult to classify. We are going to establish two criteria to help us.\\
+
+Let $A$ be the symmetric matrix associated to $Q$ and let $\lambda_1,\ldots,\lambda_n$ be the eigenvalues associated to $A$.
+\thm[]{Classification using eigenvalues}{
+    \begin{enumerate}
+        \item $\lambda_1>0,\ldots,\lambda_n>0 \Rightarrow Q$ is P.D.
+        \item $\lambda_1<0,\ldots,\lambda_n<0 \Rightarrow Q$ is N.D.
+        \item $\lambda_1=0, \lambda_2>0,\ldots,\lambda_n>0 \Rightarrow Q$ is S.P.D
+        \item $\lambda_1=0, \lambda_2<0,\ldots,\lambda_n<0 \Rightarrow Q$ is S.N.D
+        \item $\exists i,j : \lambda_i>0, \lambda_j<0 \Rightarrow Q$ is UND.
+    \end{enumerate}
+}
+\textbf{Remark: }To find the eigenvalues
+\begin{itemize}
+    \item $A\in M_{n\times n}(\bbR)$
+    \item $\exists v\neq\bbR^n : Av = \lambda v$
+    \item $\vec{v} \to$ eigenvector
+    \item $\lambda\to$ eigenvalues
+    \item $\lambda$ eigenvalues iff $P(\lambda)=0 \to \det(A-\lambda\,\text{I}_n)$
+\end{itemize}
+\ex[]{Classification using eigenvalues}{
+    \begin{enumerate}
+        \item $Q(x,y) = x^2+3y^2$\\
+        
+            $A = \left[\begin{array}{cc}
+                1 & 0\\
+                0 & 3
+            \end{array}\right]\rightarrow\lambda_1 = 1, \,\lambda_2 = 3\Rightarrow$ P.D.
+        \item $Q(x,y) = -3x^2-7y^2$\\
+        
+            $A = \left[\begin{array}{cc}
+                -3 & 0\\
+                0 & -7
+            \end{array}\right]\rightarrow\lambda_1 = -3, \,\lambda_2 = -7\Rightarrow$ N.D.
+        \item $Q(x,y) = (x-y)^2$\\
+            
+            $A = \left[\begin{array}{cc}
+                1 & -1\\
+                -1 & 1
+            \end{array}\right]$\\
+
+            $P(\lambda)=\left|\begin{array}{cc}
+                1-\lambda & -1\\
+                -1 & 1-\lambda
+            \end{array}\right|=(1-\lambda)^2-1=1-2\lambda+\lambda^2-1=\lambda(\lambda-2)\rightarrow\lambda_1 = 0, \,\lambda_2 = 2\Rightarrow$ S.P.D
+        \item $Q(x,y) = -(7x-y)^2$\\
+        
+            $A = \left[\begin{array}{cc}
+                -49 & 7\\
+                7 & -1
+            \end{array}\right]\rightarrow\lambda_1 = 0, \,\lambda_2 <0\Rightarrow$ S.N.D
+        \item $Q(x,y) = x^2-y^2$\\
+        
+            $A = \left[\begin{array}{cc}
+                1 & 0\\
+                0 & -1
+            \end{array}\right]\rightarrow\lambda_1 = 1, \,\lambda_2 =-1\Rightarrow$ UND.
+    \end{enumerate}
+}
 
 
 %\dfn{Definition Topic}{Definition Statement}
