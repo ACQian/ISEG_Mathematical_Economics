@@ -145,7 +145,7 @@ The previous result gives \textbf{candidates} for maximizer or minimizer. Now, a
             & \quad (x,y)\to 1-x^2-y^2
         \end{split}
     \end{equation*}\\
-    $\text{J}_f(x,y) = (-2x, -2y)$\\
+    $\nabla f(x,y) = (-2x, -2y)$\\
 
     $\text{H}_f(x,y) = 
     \left[
@@ -288,6 +288,70 @@ Let $A$ be the symmetric matrix associated to $Q$ and let $\lambda_1,\ldots,\lam
     \item $\lambda\to$ eigenvalues
     \item $\lambda$ eigenvalues iff $P(\lambda)=0 \to \det(A-\lambda\,\text{I}_n)$
 \end{itemize}
+\pr[]{What is the eigenvector?}{
+    $A = \left[\begin{array}{ccc}
+        1 & 2 & 0\\
+        2 & 4 & 0\\
+        0 & 0 & 7
+    \end{array}\right]$
+    \begin{align*}
+        P(\lambda) & = \det(A-\lambda I_d)\\
+        & = \left|\begin{array}{ccc}
+            1-\lambda & 2 & 0\\
+            2 & 4-\lambda & 0\\
+            0 & 0 & 7-\lambda
+        \end{array}\right|\\
+        & = (7-\lambda)\left|\begin{array}{cc}
+            1-\lambda & 2\\
+            2 & 4-\lambda
+        \end{array}\right|\\
+        & = (7-\lambda)[(1-\lambda)(4-\lambda)-4]\\
+        & = (7-\lambda)(4-\lambda-4\lambda+\lambda^2-4)\\
+        & = (7-\lambda)\underbrace{(\lambda^2-5\lambda)}_{\lambda(\lambda-5)}
+    \end{align*}
+    $\Rightarrow \lambda = 7 \land \lambda = 0 \land \lambda = 5$\\
+
+    Choosing $\lambda = 7$\\
+    \begin{align*}
+        A\left[\begin{array}{c}
+            x\\
+            y\\
+            z
+        \end{array}\right] & = 7\left[\begin{array}{c}
+            x\\
+            y\\
+            z
+        \end{array}\right]\Leftrightarrow\\
+        (A-\lambda I_d)\left[\begin{array}{c}
+            x\\
+            y\\
+            z
+        \end{array}\right] & = \vec{0} \Leftrightarrow\\
+        \left[\begin{array}{ccc}
+            -6 & 2 & 0\\
+            2 & -3 & 0\\
+            0 & 0 & 0
+        \end{array}\right]\left[\begin{array}{c}
+            x\\
+            y\\
+            z
+        \end{array}\right] & = \left[\begin{array}{c}
+            0\\
+            0\\
+            0
+        \end{array}\right] \Leftrightarrow\\
+        \begin{cases*}
+            -6x+2y = 0\\
+            2x - 3y = 0\\
+            z \in \bbR
+        \end{cases*} & \Leftrightarrow \begin{cases*}
+            x = 0\\
+            y = 0\\
+            z \in \bbR
+        \end{cases*}
+    \end{align*}
+    $\Rightarrow E_7 = \langle(0,0,\bbR)\rangle$
+}
 \ex[]{Classification using eigenvalues}{
     \begin{enumerate}
         \item $Q(x,y) = x^2+3y^2$\\
@@ -328,6 +392,121 @@ Let $A$ be the symmetric matrix associated to $Q$ and let $\lambda_1,\ldots,\lam
     \end{enumerate}
 }
 
+Associated to a quadratic form $Q : \bbR^n\to\bbR$, we may define a unique symmetric matrix $A$.
+\thm[]{Sylvestor's theorem: Leading Minors Method}{
+    If $\det A\neq 0$ and
+    \begin{itemize}
+        \item $\triangle_1>0, \triangle_2>0, \triangle_3>0, \triangle_4>0,\ldots\Rightarrow Q$ is P.D.
+        \item $\triangle_1<0, \triangle_2>0, \triangle_3<0, \triangle_4>0,\ldots\Rightarrow Q$ is N.D.
+        \item $Q$ is undefined otherwise
+    \end{itemize}
+    
+}
+The leading minors are the determinants of each $\triangle_i$
+\begin{center}
+    \includegraphics[scale=0.5]{Images/26.png}
+\end{center}
+\ex[]{Classification of $Q$ using all three methods}{
+    \begin{enumerate}
+        \item $Q(x,y) = x^2-y^2$
+            \begin{itemize}
+                \item Definition\\
+                    $f(1,0) = 1 > 0$\\
+                    $f(0,1) = -1 < 0$\\
+                    $\Rightarrow$ UND.
+                \item Eigenvalues\\
+                    $A = \left[\begin{array}{cc}
+                        1 & 0\\
+                        0 & 1
+                    \end{array}\right]$\\
+                    $\lambda_1 = 1, \lambda_2 = -1 \Rightarrow$ UND.
+                \item Sylvester's\\
+                    $\triangle_1 = 1, \triangle_2 = -1 \Rightarrow$ UND.
+            \end{itemize}
+        \item $Q(x,y,z) = -x^2-2y^2-3z^2$
+            \begin{itemize}
+                \item Definition\\
+                    All negative except at $\vec{0}\Rightarrow$ N.D.
+                \item Eigenvalues\\
+                    $A = \left[\begin{array}{ccc}
+                        -1 & 0 & 0\\
+                        0 & -2 & 0\\
+                        0 & 0 & -3
+                    \end{array}\right]$\\
+                    $\lambda_1 = -1, \lambda_2 = -2, \lambda_3 = -3 \Rightarrow$ N.D.
+                \item Sylvestor's\\
+                    $\triangle_1 = -1, \triangle_2 = 2, \triangle_3 = -6 \Rightarrow$ N.D.
+            \end{itemize}
+    \end{enumerate}
+}
+\thm[]{Local minimizer / maximizer}{
+    \begin{itemize}
+        \item $f: u\to\bbR$
+        \item $u \subseteq\bbR^n$ is open
+        \item $\nabla f(x_0) = \vec{0},\, x_0\in\bbR^n$
+    \end{itemize}
+    If $H_f$ defines a P.D. quadratic form, then $x_0$ is a local minimizer.\\
+    If $H_f$ defines a N.D. quandratic form, then $x_0$ is a local maximizer.
+}
+
+\dfn[]{Saddle point}{
+    If $x_0$ is a critical point and $x_0$ is neither a maximizer nor a minimizer, then $x_0$ is a saddle point.
+}
+\ex[]{Local maximizer / minimizer}{
+    \begin{enumerate}
+        \item $f: \bbR \to \bbR \qquad x\to -(x+2)^2+3$\\
+
+            $f'(x) = -2(x+2)$\\
+            $f'(x) = 0 \Leftrightarrow x = -2 \Rightarrow -2$ is a critical point\\
+            $f''(x) = -2 < 0 \Rightarrow$ is N.D.\\
+            $\Rightarrow -2$ is a local maximizer.
+        \item $f: \bbR^2 \to \bbR \qquad f(x,y) = x^2+3y^2$\\
+        
+            $J_f=\left[\begin{array}{cc}
+                2x & 6y
+            \end{array}\right] \rightarrow \nabla f(x,y) = (2x, 6y)$\\
+            $\nabla f(x,y) = \vec{0} \Leftrightarrow \begin{cases*}
+                2x = 0\\
+                6y = 0
+            \end{cases*} \Leftrightarrow \begin{cases*}
+                x = 0\\
+                y = 0
+            \end{cases*}$\\
+            $\therefore (0,0)$ is a critical point\\
+            $H_f = \left[\begin{array}{cc}
+                2 & 0\\
+                0 & 6
+            \end{array}\right] \Rightarrow \lambda_1 = 2, \lambda_2 = 6 \Rightarrow$ defines a P.D. quadratic form\\
+            $(0,0)$ is a local minimizer.
+    \end{enumerate}
+}
+
+Now we are going to check if a local extremum could be seen as a global extremum. For example, $f: \bbR\to\bbR$
+\begin{center}
+    \includegraphics[scale=0.5]{Images/27.png}
+\end{center}
+c is a global maximizer because $f(c)$ is the maximum of the map. $f(x)\leq f(c)\, ,\forall x\in\bbR$.\\
+
+We first need to establish the concept of \textbf{convexity} of the graph of a map. 
+The graph of $f$ is convex if the line connecting any two points $A\hookrightarrow(a, f(a))$ and $B\hookrightarrow(b, f(b))$ is above the graph of $f$.
+The graph of $f$ is concave if the line connecting any two points $A\hookrightarrow(a, f(a))$ and $B\hookrightarrow(b, f(b))$ is below the graph of $f$.
+\begin{center}
+    \includegraphics[scale=0.5]{Images/28.png}
+    \includegraphics[scale=0.5]{Images/29.png}
+\end{center}
+We can extend the definition for maps defined in $\bbR^n$, above $\to$ inside and below $\to$ outside.
+
+\dfn[]{Classification of $H_f$}{
+    If $H_f$ defines a positvely defined quadratic form for all points $x\in\bbR^n$, then we say that $H_f$ is positive. 
+    Analogous result for negative.
+}
+\thm[]{Global minimizer / maximizer}{
+    $f: u\to\bbR\, ,u\subseteq \bbR^n\, ,u$ is open
+    \begin{itemize}
+        \item $H_f$ is positive $\Rightarrow$ graph of $f$ is convex $\Rightarrow$ any local minimizer is a global minimizer
+        \item $H_f$ is negative $\Rightarrow$ graph of $f$ is concave $\Rightarrow$ any local maximizer is a global maximizer
+    \end{itemize}
+}
 
 %\dfn{Definition Topic}{Definition Statement}
 %\thm{Theorem Name}{Theorem Statement}
