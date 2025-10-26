@@ -36,8 +36,8 @@ Moreover, differential equations can be classified according to their order, i.e
     \end{enumerate}
 }
 
-The \textbf{solution} of a differential equation is a map such that if we substitute that map in the differential euqation,
-we get a true 
+The \textbf{solution} of a differential equation is a map such that if we substitute that map in the differential equation,
+we get a true proportion.
 \ex[]{Solution of a DE}{
     $y(u)$
     \begin{equation*}
@@ -119,7 +119,7 @@ The first case is the \textbf{homogeneous} case where $b(u) = 0$.
 }
 
 The second case is the \textbf{non-homogeneous} case where $b(u)\neq0$.
-Let $\mu$ be a positive smooth map: $\mu(t)>0, \forall t\in\bbR$, then the problem is defined as
+Let $\mu$ be a positive smooth map: $\underbrace{\mu(t)>0, \forall t\in\bbR}_{\text{integrating factor}}$, then the problem is defined as
 \begin{align*}
     \mu y' + \mu a(u) y & = \mu b(u)\\
     (y\mu)' & = y'\mu + y\mu' = \mu b(u)
@@ -137,20 +137,21 @@ The $t_0$ of the solution then is
 \end{align*}
 \ex[]{Non-homogeneous}{
     \begin{enumerate}
-        \item $\begin{cases*}
-            y'-y=2ue^{u^2+u}\\
-            a(u) = -1\\
-            b(u) = 2ue^{u^2+u}
-            \end{cases*}$
+        \item $y'-y=2ue^{u^2+u}$
             \begin{align*}
                 y(u) & = \frac{\int e^{-1\, du}\cdot 2ue^{u^2+u}+c}{e^{-1\, du}}\\
                 & = \frac{\int e^{-u}\cdot 2ue^{u^2+u}+c}{e^{-u}}\\
                 & = \frac{\int 2ue^{u^2}+c}{e^{-u}}\\
                 & = \frac{e^{u^2}}{e^{-u}}\; ,u\in\bbR\; ,c\in\bbR
             \end{align*}
-        \item $4u^2+y' = 8uy = -12\sin(3u)$
+        \item $4u^2y' + 8uy = -12\sin(3u)$\\
+        
+            Rewriting the problem into the desired form,
+            \begin{equation*}
+                y' + \frac{8u}{4u^2}y = -\frac{12\sin(3u)}{4u^2}
+            \end{equation*}
+            Now focusing on solving for $y$,
             \begin{align*}
-                y' + \frac{8u}{4u^2}y & = -\frac{12\sin(3u)}{4u^2}\Leftrightarrow\\
                 y & = \frac{\int e^{\int\frac{2}{u}\, du}\cdot (-\frac{12\sin(3u)}{4u^2})+c}{e^{\int \frac{2}{u}\, du}}\\
                 & = \frac{\int e^{2\log(u)}\cdot (-\frac{12\sin(3u)}{4u^2})+c}{e^{\log (u^2)}}\\
                 & = \frac{\int u^2(-\frac{12\sin(3u)}{4u^2})+c}{e^{\log (u^2)}}\\
