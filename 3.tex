@@ -1,0 +1,161 @@
+\chapter{Differential Equations}
+
+Differential equation is an equation involving derivatives. 
+$3u+2=5$ is an algebraic equation and its solution is a number: $u=1$.
+An example of a differential equation is
+\begin{equation*}
+    y' = y\Leftrightarrow y(u)=e^u
+\end{equation*}
+The solution is a \textbf{map}. What is the map such that its derivative is equal to itself?\\
+
+The goals are the following:
+\begin{enumerate}
+    \item Solve some differential equations
+    \item In the cases I cannot solve the differential equations, study the properties of the solutions
+\end{enumerate}
+
+Differential equations can be classified as
+\begin{itemize}
+    \item ordinary:\\
+    \begin{equation*}
+        y''+y=u^4
+    \end{equation*}
+    \item partial derivatives $(u_1, u_2)$
+    \begin{equation*}
+        \frac{\partial y}{\partial u_1} + \frac{\partial^2 y}{\partial u_2^2} = y
+    \end{equation*}
+\end{itemize}
+
+Moreover, differential equations can be classified according to their order, i.e. the highest degree of derivative appearing in the differential equation.
+
+\ex[]{Classifications}{
+    \begin{enumerate}
+        \item $y'=y\quad$ ODE of order 1
+        \item $y''+u^5y = y\quad$ ODE of order 2
+        \item $\frac{\partial f}{\partial u\partial y}=f(u,y)\quad$ PDE of order 2
+    \end{enumerate}
+}
+
+The \textbf{solution} of a differential equation is a map such that if we substitute that map in the differential euqation,
+we get a true 
+\ex[]{Solution of a DE}{
+    $y(u)$
+    \begin{equation*}
+        y' = 3y\quad y'y'(u)\quad \dot{y}=y'(u)
+    \end{equation*}
+}
+
+In general, given a differential equation, we get infinitely many solutions. 
+But the \textbf{Initial Value Problem} (IVP) has a \textbf{unique solution}, this solution is defined in an open neighborhood of $t_0=0$.
+    \begin{equation*}\text{IVP} =
+        \begin{cases*}
+            g' = e^{3u}\\
+            y(0) = 1
+        \end{cases*}
+    \end{equation*}
+    General solution is given by,
+    \begin{align*}
+        y(u) & = ce^{3u}\, ,c\in\bbR\\
+        1 & = ce^{3\times 0}\\
+        c & = 1
+    \end{align*}
+    Thus we just have one solution,
+    \begin{equation*}
+        y(u) = e^{3u}\, ,u\in\bbR
+    \end{equation*}
+\ex[]{IVP}{
+    \begin{enumerate}
+        \item $y'=3$
+        \begin{equation*}
+            y(u)=3u+c\, ,\underbrace{c\in\bbR}_{\text{set where the constant lives}}
+        \end{equation*}
+        \item $
+            \begin{cases*}
+                y'=3\\
+                y'(1)=4
+            \end{cases*}$
+        \begin{equation*}
+            y(u) = 3u+c \Rightarrow 3\times 1 + c = 4 \Leftrightarrow c = 1 \Rightarrow y(u) = 3u+1\, ,u\in\bbR
+        \end{equation*}
+        \item $y'=u^5$
+        \begin{equation*}
+            y(u)=\frac{u^6}{6}+c\, ,c\in\bbR
+        \end{equation*}
+    \end{enumerate}
+}
+\nt{
+    \textbf{First rule}: \begin{itemize}
+        \item $y' = f(u)$ does not depend on $y$
+        \item $y(u) = \int f(u)\, du$
+    \end{itemize}
+}
+
+\section{Linear differential equations of 1st order: $y(u)$}
+General setup of the problem:
+\begin{itemize}
+    \item $y'+a(u) = b(u)$
+    \item $a(u)$ and $b(u)$ are smooth maps
+\end{itemize}
+For example, $y'+\underbrace{3u+4}_{a(u)} = \underbrace{e^u}_{b(u)}$.\\
+
+The first case is the \textbf{homogeneous} case where $b(u) = 0$.
+\begin{align*}
+    y'+a(u)y & = 0\\
+    y' & = -a(u)y \quad ,y\neq 0\\
+    \frac{y'}{y} & = -a(u) \Leftrightarrow\\
+    \frac{\partial}{\partial u} \log|y| & = -a(u) \Leftrightarrow\\
+    \ln|y| & = -\int a(u)\, du + c\\
+    |y| & = e^{-\int a(u)\, du}\cdot K
+\end{align*}
+\ex[]{Homogeneous}{
+    $\begin{cases*}
+        y' = 3y\\
+        a(u) = -3
+    \end{cases*}$
+    \begin{equation*}
+        \frac{y'}{y} = 3 \Leftrightarrow\int\frac{y'}{y}\, du \Leftrightarrow \log|y| = 3u \Leftrightarrow
+        y=e^{3u}\cdot K\; ,K\in\bbR\; ,u\in\bbR
+    \end{equation*}
+}
+
+The second case is the \textbf{non-homogeneous} case where $b(u)\neq0$.
+Let $\mu$ be a positive smooth map: $\mu(t)>0, \forall t\in\bbR$, then the problem is defined as
+\begin{align*}
+    \mu y' + \mu a(u) y & = \mu b(u)\\
+    (y\mu)' & = y'\mu + y\mu' = \mu b(u)
+\end{align*}
+The left hand side of the equation could be seen as $(y\mu)'$ if
+\begin{equation*}
+    \mu a(u) = \mu' \Leftrightarrow \mu' = a(u)\mu \Leftrightarrow \mu = e^{\int e(u)\, du}\cdot K
+\end{equation*}
+The $t_0$ of the solution then is
+\begin{align*}
+    \frac{\partial}{\partial u}[y\mu] & = \mu\cdot b(u)\\
+    \frac{\partial}{\partial u}[y\cdot e^{\int a(u)\, du}\cdot K] & = e^{\int a(u)\,du}\cdot K \cdot b(u)\\
+    y\cdot e^{\int a(u)\, du} & = \int e^{\int a(u)\, du}\cdot b(u)\, du + c\\
+    y & = \frac{\int e^{\int a(u)\, du}\cdot b(u)\, du + c}{e^{\int a(u)\, du}}\; ,c\in\bbR
+\end{align*}
+\ex[]{Non-homogeneous}{
+    $\begin{cases*}
+        y'-y=2ue^{u^2+u}\\
+        a(u) = -1\\
+        b(u) = 2ue^{u^2+u}
+    \end{cases*}$
+    \begin{align*}
+        y(u) & = \frac{\int e^{-1\, du}\cdot 2ue^{u^2+u}+c}{e^{-1\, du}}\\
+        & = \frac{\int e^{-u}\cdot 2ue^{u^2+u}+c}{e^{-u}}\\
+        & = \frac{\int 2ue^{u^2}+c}{e^{-u}}\\
+        & = \frac{e^{u^2}}{e^{-u}}\; ,u\in\bbR\; ,c\in\bbR
+    \end{align*}
+}
+
+%\dfn{Definition Topic}{Definition Statement}
+%\thm{Theorem Name}{Theorem Statement}
+%\cor[cori]{Corollary Name}{Corollary Statement}
+%\lem{Lemma Name}{Lemma Statement}
+%\clm{Claim Name}{Claim Statement}
+%\ex{Example Name}{Example explained}
+%\opn{Open Question Name}{Question Statement}
+%\pr{Question Name}{Question Statement}
+%\nt{Special Note}
+%\wc{Wrong Concept topic}{Explanation}
