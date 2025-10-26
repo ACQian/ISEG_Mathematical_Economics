@@ -136,17 +136,28 @@ The $t_0$ of the solution then is
     y & = \frac{\int e^{\int a(u)\, du}\cdot b(u)\, du + c}{e^{\int a(u)\, du}}\; ,c\in\bbR
 \end{align*}
 \ex[]{Non-homogeneous}{
-    $\begin{cases*}
-        y'-y=2ue^{u^2+u}\\
-        a(u) = -1\\
-        b(u) = 2ue^{u^2+u}
-    \end{cases*}$
-    \begin{align*}
-        y(u) & = \frac{\int e^{-1\, du}\cdot 2ue^{u^2+u}+c}{e^{-1\, du}}\\
-        & = \frac{\int e^{-u}\cdot 2ue^{u^2+u}+c}{e^{-u}}\\
-        & = \frac{\int 2ue^{u^2}+c}{e^{-u}}\\
-        & = \frac{e^{u^2}}{e^{-u}}\; ,u\in\bbR\; ,c\in\bbR
-    \end{align*}
+    \begin{enumerate}
+        \item $\begin{cases*}
+            y'-y=2ue^{u^2+u}\\
+            a(u) = -1\\
+            b(u) = 2ue^{u^2+u}
+            \end{cases*}$
+            \begin{align*}
+                y(u) & = \frac{\int e^{-1\, du}\cdot 2ue^{u^2+u}+c}{e^{-1\, du}}\\
+                & = \frac{\int e^{-u}\cdot 2ue^{u^2+u}+c}{e^{-u}}\\
+                & = \frac{\int 2ue^{u^2}+c}{e^{-u}}\\
+                & = \frac{e^{u^2}}{e^{-u}}\; ,u\in\bbR\; ,c\in\bbR
+            \end{align*}
+        \item $4u^2+y' = 8uy = -12\sin(3u)$
+            \begin{align*}
+                y' + \frac{8u}{4u^2}y & = -\frac{12\sin(3u)}{4u^2}\Leftrightarrow\\
+                y & = \frac{\int e^{\int\frac{2}{u}\, du}\cdot (-\frac{12\sin(3u)}{4u^2})+c}{e^{\int \frac{2}{u}\, du}}\\
+                & = \frac{\int e^{2\log(u)}\cdot (-\frac{12\sin(3u)}{4u^2})+c}{e^{\log (u^2)}}\\
+                & = \frac{\int u^2(-\frac{12\sin(3u)}{4u^2})+c}{e^{\log (u^2)}}\\
+                & = \frac{\int -3\sin(3u)+c}{u^2}\\
+                & = \frac{\cos(3u)+c}{u^2}\; ,c\in\bbR\; ,u\in\bbR\backslash\{0\}
+            \end{align*}
+    \end{enumerate}
 }
 
 %\dfn{Definition Topic}{Definition Statement}
