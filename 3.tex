@@ -161,6 +161,97 @@ The $t_0$ of the solution then is
     \end{enumerate}
 }
 
+In this course, given an IVP, we have just one solution.
+\begin{enumerate}
+    \item \begin{gather*}
+        y' = f(u)\\
+        y = \int f(u)\, du + c\, ,c\in\bbR
+    \end{gather*}
+    \item Linear differential equation of first order
+    \begin{equation*}
+        y' + a(u)y = b(u)
+    \end{equation*}
+    \item Separable differential equation
+    \begin{gather*}
+        y' = \frac{f(u)}{g(y)}\quad ,g(y)\neq 0\quad f,g \text{ differentiable maps} \Leftrightarrow\\
+        g(y)y' = f(u)\quad \text{using chain rule }\Leftrightarrow\\
+        \frac{\partial}{\partial u}[G(y)] = f(u) \Leftrightarrow\\
+        G(y) = F(u) + c\, ,c\in\bbR
+    \end{gather*}
+    where $G(y) = \int g(y)\, dy$, $F(u) = \int f(u)\, du$, $G' = g$, 
+    and $\frac{\partial}{\partial u}(G\circ g)(u) = \frac{\partial G}{\partial y}\cdot \frac{\partial y}{\partial u}(u) = g(y)y'$
+\end{enumerate}
+
+\ex[]{Seperable differential equation}{
+    \begin{enumerate}
+        \item $y' = 2ty$ is separable
+        \item $y' = \cos (2ty)$ is not separable
+        \item $\begin{cases*}
+            u' = -2tu^2\\
+            u(1) = -1
+        \end{cases*}$
+        \begin{gather*}
+            u' = -2tu^2\\
+            u^{-2}u' = -2t\\
+            \frac{u^{-1}}{-1} = -t^2 + c\\
+            -\frac{1}{u} = -t^2 + c\\
+            u(t) = \frac{1}{t^2-c}
+        \end{gather*}
+        Now using $t(1) = -1$
+        \begin{gather*}
+            \frac{1}{1-c} = -1 \Leftrightarrow c = 2\\
+            u(t) = \frac{1}{t^2 - 2}
+        \end{gather*}
+        We now choose the interval that contains $t=1$
+        \begin{equation*}
+            D = \bbR \backslash \{\pm \sqrt{2}\}
+        \end{equation*}
+        \item $e^y (4+u^2)y' = u(2+e^y)$
+        \begin{gather*}
+            \underbrace{\frac{e^y}{2+e^y}}_{g(y)}y' = \underbrace{\frac{u}{4+u^2}}_{f(u)}\\
+            \ln(2+e^y) = \frac{1}{2}\ln(4+u^2) + c\\
+            2 + e^y = \exp \{\frac{1}{2}\ln(4+u^2)+ c\}\\
+            e^y = \exp\{\frac{1}{2}\ln(4+u^2)\}\,e^c - 2\\
+            e^y = \sqrt{4+u^2}\, e^c-2\\
+            y = \ln(\sqrt{4+u^2}\underbrace{e^c}_{k}-2)
+        \end{gather*}
+        where $\begin{cases*}
+            c\in\bbR\\
+            k\in\bbR^+
+        \end{cases*}$
+    \end{enumerate}
+}
+
+\subsection{Exact differential equations}
+General set up of the question,
+\begin{gather*}
+    y(t)\\
+    \phi (t,y) = k\, ,k\in\bbR\\
+    \phi : \bbR^2\to\bbR\quad c^2 \text{ map}
+\end{gather*}
+Computing the derivative of $\phi$ with respect to $t$,
+\begin{equation*}
+    \frac{\partial \phi}{\partial t}\cdot\underbrace{\frac{\partial t}{\partial t}}_{=1} + \frac{\partial \phi}{\partial y}\cdot\frac{\partial y}{\partial t} = 0
+    \Leftrightarrow \underbrace{\frac{\partial \phi}{\partial t} + \frac{\partial \phi}{\partial y}\cdot y' = 0}_{\text{form of an exact differential equation}}
+\end{equation*}
+
+Given an exact differential equation, the first goal is to write $y(t)$ explicitly. 
+If that is not possible, we want to compute $\phi(t,y)$.
+In the ladder case, we say taht the solution is implicit.
+\begin{equation*}
+    \underbrace{\frac{\partial \phi}{\partial t}}_{f(t,y)} + \underbrace{\frac{\partial \phi}{\partial y}}_{g(t,y)} y' = 0
+\end{equation*}
+\lem[]{}{
+    If $f$ and $g$ are map defined in an rectangle of the form $(a,b)\times(c,d)$ where $a,b,c,d \in\bbR$, then the following propositions are equivalent.
+    \begin{enumerate}
+        \item There exists $\phi$ such that $\begin{cases*}
+            \frac{\partial\phi}{\partial t} = f(t,y)\\
+            \frac{\partial\phi}{\partial y} = g(t,y)
+        \end{cases*}$
+        \item $\displaystyle\frac{\partial f}{\partial y} = \frac{\partial g}{\partial t}$
+    \end{enumerate}
+}
+
 %\dfn{Definition Topic}{Definition Statement}
 %\thm{Theorem Name}{Theorem Statement}
 %\cor[cori]{Corollary Name}{Corollary Statement}
