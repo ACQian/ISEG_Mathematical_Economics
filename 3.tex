@@ -222,7 +222,7 @@ In this course, given an IVP, we have just one solution.
     \end{enumerate}
 }
 
-\subsection{Exact differential equations}
+\section{Exact differential equations}
 General set up of the question,
 \begin{gather*}
     y(t)\\
@@ -251,6 +251,261 @@ In the ladder case, we say taht the solution is implicit.
         \item $\displaystyle\frac{\partial f}{\partial y} = \frac{\partial g}{\partial t}$
     \end{enumerate}
 }
+
+\ex[]{}{
+    $\begin{cases*}
+        \frac{2u}{y^3}+\frac{y^2-3u^2}{y^4}\,\frac{dy}{du} = 0\\
+        y(0) = 1
+    \end{cases*}$\\
+
+    In this case, we can use the Lemma proposed earlier where $\displaystyle\frac{\partial f}{\partial y} = \frac{\partial g}{\partial u}$ 
+    if $\exists \;\phi$: satisfying the hypothesis.
+    \begin{gather*}
+        \underbrace{\frac{2u}{y^3}}_{\frac{\partial \phi}{\partial t}=f(u,y)} + \underbrace{\frac{y^2-3u^2}{y^4}}_{\frac{\partial\phi}{\partial y}= g(u,y)}y' = 0\\
+        f(u,y) = \frac{2u}{y^3} = 2uy^{-3} \Rightarrow \frac{\partial f}{\partial y}(u,y) = -6uy^{-4}\\
+        g(u,y) = \frac{y^2-3u^2}{y^4} = \frac{1}{y^2}-3u^2y^{-4} \Rightarrow \frac{\partial g}{\partial u}(u,y) = -6uy^{-4}
+    \end{gather*}
+    Hypothesis for the Lemma is satisfied, thus,
+    \begin{equation*}
+        \frac{\partial f}{\partial u}(u,y) = 2uy^{-3} 
+        \Rightarrow \phi(u,y) = u^2y^{-3}+h(y) 
+        \Rightarrow \frac{\partial\phi}{\partial y}(u,y) = -3u^2y^{-4}+h^2(y)
+        \Rightarrow h'(y) = \frac{1}{y^2}
+        \Rightarrow h(y) = -\frac{1}{y}+k
+    \end{equation*}
+    Solution:
+    \begin{gather*}
+        \underbrace{\phi(u,y)}_{y(0)=1} = u^2y^{-3}-\frac{1}{y}+k
+        \Leftrightarrow \underbrace{\phi(0,1)}_{=0} = -\frac{1}{1}=k
+        \Leftrightarrow k = 1\\
+        \therefore \phi(u,y) = u^2y^{-3}-\frac{1}{y} + 1
+    \end{gather*}
+}
+
+\section{Linear differential equations with constant coefficient of 2nd degree}
+General set up of the question:
+\begin{equation*}
+    ay''(u) + by'(u) + cy(u) = f(u)\quad a,b,c\in\bbR,\quad f(u)\text{ is a differentiable map}
+\end{equation*}
+
+\subsection{Homogeneous case: $f(u) = 0$}
+\begin{equation}
+    ay'' + by' + cy = 0
+\end{equation}
+\dfn[]{}{
+    The characteristic polynomial associated to Eq.(3.1) is $a\lambda^2 + b\lambda + c$.\\
+
+    The characteristic equation associated to Eq.(3.1) is $\underbrace{a\lambda^2+b\lambda+c=0}_{P(\lambda)}$. The graph of $P(\lambda)$ is a parabola.
+}
+
+Couple \textbf{propositions}:
+    \begin{itemize}
+        \item If $P(\lambda) = 0$ has two different solutions, say $\lambda_1$ and $\lambda_2$, then the general solution of Eq.(3.1) is
+        \begin{equation*}
+            y(u) = c_1e^{\lambda_1u}+c_2e^{\lambda_2u}\quad c_1,c_2\in\bbR
+        \end{equation*}
+        \item If $P(\lambda) = 0$ has a unique real solution, $\lambda = \lambda_0$, then the solution of Eq.(3.1) is
+        \begin{equation*}
+            y(u) = (c_1+c_2u)e^{\lambda u}\quad c_1,c_2\in\bbR
+        \end{equation*}
+        \item If $P(\lambda) = 0$ has complex and non-real solutions, say $\alpha \pm i\omega$, then the solution of Eq.(3.1) is
+        \begin{equation*}
+            y(u) = e^{\lambda n}[c_1\cos(\omega u)+c_2\sin(\omega n)]\quad c_1,c_2\in\bbR
+        \end{equation*}
+    \end{itemize}
+
+\ex[]{}{
+    \begin{enumerate}
+        \item $y'' - 3y' + 2y = 0$
+        \begin{gather*}
+            P(\lambda) = \lambda^2 -3\lambda +2\\
+            P(\lambda) = 0 \Leftrightarrow \lambda = 1 \vee \lambda = 2
+        \end{gather*}
+        General solution:
+        \begin{equation*}
+            y(u) = c_1 e^u + c_2 e^{2u}
+        \end{equation*}
+        Result:
+        \begin{gather*}
+            y'' -3y' = 0\\
+            P(\lambda) = \lambda^2 -3\lambda\\
+            \alpha = 0\quad \omega = 3
+        \end{gather*}
+        \item $y'' + 9y = 0$
+        \begin{gather*}
+            P(\lambda) = \lambda^2 + 9\\
+            P(\lambda) = 0\\
+            \lambda = \pm 3i\\
+            y(u) = c_1\cos(3u)+c_2\sin(3u)\quad c_1,c_2\in\bbR
+        \end{gather*}
+    \end{enumerate}
+}
+\textbf{Remark}:
+\begin{itemize}
+    \item 1st degree $\begin{cases*}
+    y'=y\\
+    y(t_0) = y_0
+    \end{cases*}$
+    \item 2nd degree $\begin{cases*}
+    ay'' + by' + cy = 0\\
+    y(t_0) = y_0\, ,y(t_1)=y_1
+    \end{cases*} \rightarrow $ unique solution
+\end{itemize}
+
+\subsection{Non-homogenous case: $f(u)\neq 0$}
+\begin{equation}
+    ay'' + by'' + cy = f(u)
+\end{equation}
+To define some terminology that would be used:
+\begin{itemize}
+    \item $y_{part}(u) = $ particular solution of Eq.(3.2)
+    \item $y_{hom}(u) = $ solution of the homogeneous equation associated to Eq.(3.2)
+\end{itemize}
+\lem[]{}{
+    The general solution of Eq.(3.2) is of the form
+    \begin{equation*}
+        y(u) = y_{hom}(u) + y_{part}(u)
+    \end{equation*}
+}
+\begin{proof}
+    \begin{gather*}
+        y'(u) = y_{hom}'(u) + y_{part}'(u)\\
+        y''(u) = y_{hom}''(u) + y_{part}''(u)
+    \end{gather*}
+    \begin{align*}
+        ay''(u) + by'(u) + cy(u) 
+        & = a[y''_{hom}(u)+y_{part}''(u)] + b[y_{hom}'(u)+y_{part}'(u)] + c[y_{hom}(u)+y_{part}(u)]\\
+        & = \underbrace{(ay''_{hom}(u)+by'_{hom}(u)+cy_{hom}(u))}_{=0} + \underbrace{(ay_{part}''(u)+by_{part}''(u)+cy_{part}(u))}_{f(u)}\\
+        & = f(u)
+    \end{align*}
+\end{proof}
+The difficulty now is to obtain a particular solution of Eq.(3.2). For this, we are going to use the following table,
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        $f(u)$ & $y_{\text{part}}(u)$ \\ \hline
+        $c$ & $k$ \\
+        $ce^{au}$ & $ke^{au}$ \\
+        $c\cos(bu)$ & $k_1\cos(bu)+k_2\sin(bu)$ \\
+        $c\cos(bu)e^{au}$ & $k_1e^{au}\cos(bu) + k_2e^{au}\sin(bu)$ \\
+        $c_2u^2+c_1u+c_0$ & $k_2u^2+k_1u+k_0$ \\ \hline
+    \end{tabular}
+    \caption{Typical forms of $f(u)$ and corresponding $y_{\text{part}}(u)$ in non-homogeneous ODEs}
+    \label{tab:ypart}
+\end{table}
+\ex[]{}{
+    $y''-4y'+4y = 0$\\
+
+    Homogeneous:
+    \begin{gather*}
+        y'' -4y'+4y = 0\\
+        \lambda^2 - 4\lambda + 4 = 0\\
+        \lambda = \frac{4\pm\sqrt{16-4\times 1\times 4}}{2}\\
+        \lambda = 2\rightarrow \text{one solution}\\
+        y(u) = (c_1+c_2 u)e^{2u}\quad c_1,c_2\in\bbR
+    \end{gather*}
+    Particular solution:
+    \begin{gather*}
+        y_{part}(u) = Au^2 + Bu + C\\
+        y_{part}'(u) = 2Au + B\\
+        y''(u) = 2A\\
+        \underbrace{2A}_{y''} - 4\underbrace{(2Au+B)}_{y'} + 4\underbrace{(Au^2+Bu+C)}_{y} = 8u^2\\
+        (2A - 4B + 4C) + (-8A + 4B)u + 4Au^2 = 8u^2\\
+        \begin{cases}
+            4A = 8\\
+            -8A+4B = 0\\
+            2A-4B+4C = 0
+        \end{cases} \Leftrightarrow \begin{cases}
+            A = 2\\
+            B = 4\\
+            C = 3
+        \end{cases}
+    \end{gather*}
+    The general solution is 
+    \begin{equation*}
+        y(u) = (c_1+c_2u)e^{2u} + 2u^2+4u+3\quad c_1,c_2\in\bbR
+    \end{equation*}
+}
+
+\section{Models of population}
+First approach: $p(t)$ which models the population of instant $t$, $t\in\bbR_0^+$, and $p(T)$ a differentiable map.\\
+
+Consider the situation where $\begin{cases*}
+    r_B: \text{ birth rate}\\
+    r_D: \text{ death rate}
+\end{cases*}$. The differentiable euqation that models the evolution of the popualtion is given by
+\begin{equation}
+    p'(t) = \underbrace{[r_B - r_D]}_{K}\cdot p(t)
+\end{equation}
+where Eq.(3.3) could be written as $p'=Kp$ which is also known as the \textbf{Malthus Law}. The general solution is 
+\begin{equation*}
+    p(t) = p_0 \cdot e^{Kt}\quad ,p\in\bbR_0^+
+\end{equation*}\\
+
+Assuming $K>0$, the the graph of $p$ is 
+\begin{center}
+    \includegraphics[scale=0.3]{Images/30.png}\\
+    $p' = ap -bp^2\text{ Logistic Law}\quad a>b>0$
+\end{center}
+In this case, $\lim_{t\to+\infty}p(t) = +\infty$. This model does not contemplate completion.\\
+
+Separable solution:
+\begin{equation*}
+    p' = p(a-bp) \Leftrightarrow \frac{p'}{p(a-bp)} = 1
+\end{equation*}
+We should find
+\begin{gather*}
+    \int \frac{1}{p(a-bp)}\, dp\quad\text{where } \frac{1}{p(a-bp)} = \frac{A}{p}+\frac{B}{(a-bp)}
+\end{gather*}
+\begin{gather*}
+    A(a-bp)+Bp =1 \Leftrightarrow\\
+    Aa -Abp + Bp = 1 \Leftrightarrow\\
+    \begin{cases*}
+        p(-Ab+B) = 0\\
+        Aa = 1
+    \end{cases*} \Leftrightarrow\\
+    \begin{cases*}
+        -Ab + B = 0\\
+        A = \frac{1}{a}
+    \end{cases*} \Leftrightarrow\\
+    -\frac{b}{a}+B = 0 \Leftrightarrow\\
+    \begin{cases*}
+        B = \frac{b}{a}\\
+        A = \frac{1}{a}
+    \end{cases*}\Leftrightarrow
+\end{gather*}
+Thus we have,
+\begin{equation*}
+    \frac{1}{p(a-bp)} = \frac{\frac{1}{a}}{p} + \frac{\frac{b}{a}}{(a-bp)}
+\end{equation*}
+Taking the derivative,
+\begin{align*}
+    \int\frac{1}{p(a-bp)}\, dp
+    & = \int \frac{\frac{1}{a}}{p}\, dp + \int \frac{\frac{b}{a}}{a-bp}\, dp \\
+    & = \frac{1}{a}\ln(p) + \frac{b}{a}\cdot\frac{1}{-b}\ln[a-bp]\\
+    & = \frac{1}{a}\ln(p) -\frac{1}{a}\ln|a-bp|
+\end{align*}
+Coming back to the differentiable equation, one gets,
+\begin{gather*}
+    \frac{1}{a}\ln(p) - \frac{1}{a}\ln|a-bp| = t + c \Leftrightarrow\\
+    \frac{1}{a}\ln|\frac{p}{a-bp}| = t + c \Leftrightarrow\\
+    \ln|\frac{p}{a-bp}| = at + c \Leftrightarrow\\
+    |\frac{p}{a-bp}| = e^{at}\cdot c\, c\in\bbR_0^+ \Leftrightarrow\\
+    |\frac{a-bp}{p}| = \frac{1}{e^{at}\cdot c} \underset{(a-bp)>0}{\Leftrightarrow}\\
+    \frac{a}{p}-b = \frac{1}{e^{at}\cdot c}\Leftrightarrow\\
+    \frac{a}{p} = b + \frac{1}{e^{at}\cdot c}\Leftrightarrow\\
+    p(t) = \frac{a}{b + \frac{1}{e^{at}\cdot c}}
+\end{gather*}
+\begin{center}
+    \includegraphics[scale=0.4]{Images/31.png}\\
+    \begin{equation*}
+        \lim_{t\to+\infty}p(t) = \frac{a}{b}\to \text{ carrying capacity}
+    \end{equation*}
+\end{center}
+
+\section{Linear system of differential equation}
+
 
 %\dfn{Definition Topic}{Definition Statement}
 %\thm{Theorem Name}{Theorem Statement}
