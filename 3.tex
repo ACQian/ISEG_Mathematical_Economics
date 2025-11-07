@@ -505,6 +505,273 @@ Coming back to the differentiable equation, one gets,
 \end{center}
 
 \section{Linear system of differential equation}
+The typology space considered is $\bbR^n$ with $(x_1,\ldots,x_n) \in\bbR^n$.
+\begin{equation}
+    \begin{cases}
+        \dot{x}_1 = a_{11}x_1 + a_{12}x_2+\ldots+a_{1n}x_n\\
+        \vdots\\
+        \dot{x}_n = a_{n1}x_1 + a_{n2}x_2 + \ldots + a_{nn}x_n
+    \end{cases}
+\end{equation}
+where $\dot{x}_i = \frac{\partial x_i}{\partial t}$.
+
+\ex[]{}{
+    $\begin{cases*}
+        \dot{x}_1 = x_1\\
+        \dot{x}_2 = 3x_2
+    \end{cases*}$
+    \begin{equation*}
+        \dot{x}_1 = \frac{\partial x_1}{\partial t}
+    \end{equation*}
+    $(x_1(t), x_2(t)) = (e^{t}, e^{3t})$ is a solution.
+    \begin{gather*}
+        \dot{x}_1(t) = e^{t} = x_1(t)\\
+        \dot{x}_2(t) = 3e^{3t} = 3x_2(t)
+    \end{gather*}
+}
+\dfn[]{n-uple}{
+    A solution of Eq. (3.4) is a n-uple $(x_1(t),\ldots,x_n(t))\in\bbR^n$ that satisfies the equalities.
+}
+\ex[]{}{
+    $\begin{cases*}
+        \dot{x}_1 = 3\underbrace{x_1^2}_{\text{this is not linear}}\\
+        \dot{x}_2 = 4x_1 + 8x_2
+    \end{cases*}$
+}
+
+This goal is to solve planer systems of differential equations.
+In other words, the main goal is to solve:
+\begin{equation}
+    \begin{cases*}
+        \dot{x} = ax + by\\
+        \dot{y} = xc + dy
+    \end{cases*}
+\end{equation}
+As before, Eq. (3.5) has infinitely many solutions.\\
+
+The \textbf{first step} is to write Eq. (3.5) in a matrix form.
+\begin{equation*}
+    \left(\begin{array}{c}
+        \dot{x}\\
+        \dot{y}
+    \end{array}\right) = \underbrace{\left(\begin{array}{cc}
+        a & b\\
+        c & d
+    \end{array}\right)}_{A}\left(\begin{array}{c}
+        x\\
+        y
+    \end{array}\right)
+\end{equation*}
+
+The \textbf{second step} is to check the eigenvalues and eigenvectors of $A$.
+\nt{
+    $P(\lambda) = \det (A-\lambda Id) \to$ characteristic polynomial\\
+    $P(\lambda) = 0 \to$ characteristic equation\\
+    $P(\lambda) = (\lambda - \lambda_1)(\lambda - \lambda_2)^*$ where * is the algebraic multiplicity of $\lambda_2$\\
+    $E_{\lambda} = <(x,y,z),(\alpha,\beta,\theta)>$ where dim $E_\lambda$ is the geometric multiplicity of $\lambda$
+}
+
+\textbf{First case}: $A$ has two real eigenvalues $\lambda_1, \lambda_2$ associated to the eigenvectors $v_1, v_2$ respectively.
+\begin{equation*}
+    \left(\begin{array}{c}
+        x(t)\\
+        y(t)
+    \end{array}\right) = k_1 e^{\lambda_1 t}v_1 + k_2 e^{\lambda_2 t}v_2\quad k_1,k_2\in\bbR
+\end{equation*}
+\ex[]{}{
+    $\begin{cases*}
+        \dot{x} = 3x-y\\
+        \dot{y} = 4x-2y
+    \end{cases*}$
+    \begin{equation*}
+        A = \left[\begin{array}{cc}
+            3 & -1\\
+            4 & -2
+        \end{array}\right]
+    \end{equation*}
+    \begin{align*}
+        P(\lambda)
+        & = det\left(\begin{array}{cc}
+            3-\lambda & -1\\
+            4 & -2-\lambda
+        \end{array}\right)\\
+        & = (3-\lambda)(-2-\lambda)+4\\
+        & = -6 - 3\lambda + 2\lambda + \lambda^2 + 4\\
+        & = \lambda^2 -\lambda -2\\
+        & = (\lambda +1)(\lambda -2)
+    \end{align*}
+    Eigenvalues: $-1, 2$\\
+
+    Now finding the eigenvectors:
+    \begin{itemize}
+        \item $E_{-1}$
+        \begin{equation*}
+            \left(\begin{array}{cc}
+                4 & -1\\
+                4 & -1
+            \end{array}\right)\left(\begin{array}{c}
+                x\\
+                y
+            \end{array}\right) = \left(\begin{array}{c}
+                0\\
+                0
+            \end{array}\right) \Leftrightarrow 
+            4x - y = 0 \Leftrightarrow
+            y = 4x \Rightarrow E_{-1} : \,<(1,4)>
+        \end{equation*}
+        \item $E_{2}$
+        \begin{equation*}
+            (\cdots) \Rightarrow E_{2} :\, <(1,1)>
+        \end{equation*}
+    \end{itemize}
+    So the general solution is:
+    \begin{equation*}
+        \left(\begin{array}{c}
+            x(t)\\
+            y(t)
+        \end{array}\right) = k_1e^{-t}\left(\begin{array}{c}
+            1\\
+            4
+        \end{array}\right) + k_2e^{2t}\left(\begin{array}{c}
+            1\\
+            1
+        \end{array}\right)\quad k_1,k_2\in\bbR
+    \end{equation*}
+}
+
+\textbf{Second case}: $A$ has a single eigenvalue $\lambda\in\bbR$ with algebraic multiplicity equal to geometric multiplicity = 2, i.e. $\lambda, E_{\lambda}=<v_1, v_2>$.
+\begin{equation*}
+    \left(\begin{array}{c}
+        x(t)\\
+        y(t)
+    \end{array}\right) = k_1 e^{\lambda t}v_1 + k_2 e^{\lambda t}v_2\quad k_1,k_2\in\bbR
+\end{equation*}
+
+\textbf{Third case}: $A$ has a single eigenvalue $\lambda$ and its algebraic multiplicity is bigger than its geometric multiplicity, i.e. $a.m.(\lambda) = 2 > g.m.(\lambda) =1$. 
+We get one eigenvalue for free: $E_{\lambda} = <v_1>$. In this case, we  need to find an $\omega$ such that 
+\begin{equation*}
+    \begin{cases*}
+        (A-\lambda Id)^2\vec{\omega} = \vec{0}\\
+        A\vec{\omega} \neq \lambda\vec{\omega} \to \omega\text{ cannot be eigenvector}
+    \end{cases*}
+\end{equation*}
+We then get the general solution,
+\begin{equation*}
+    X(t) = k_1e^{\lambda t}v_1 + k_2e^{\lambda t}(\omega + t(A-\lambda Id)\omega)\quad k_1,k_2\in\bbR
+\end{equation*}
+
+\textbf{Fourth case}: $A$ has a pair of complex non-real eigenvalues in the form $\alpha\pm i\omega$. First compute the eigenvectors for $v_1\in\bbC$. Then the generation solution would be,
+\begin{equation*}
+    X(t) = \left(\begin{array}{c}
+        x(t)\\
+        y(t)
+    \end{array}\right) = e^{(\alpha + i\omega)t}v_1
+\end{equation*}
+\begin{align*}
+    e^{(\alpha+i\omega)t}
+    & = e^{\alpha t}\cdot e^{i\omega t}\quad\text{using the Euler rotation}\\
+    & = e^{\alpha t}(\cos(\omega t)+i\sin(\omega t))
+\end{align*}
+\begin{equation*}
+    v_1\in\bbC \Leftrightarrow v_1 = \underbrace{\omega_1}_{Re(v_1)} + i\underbrace{\omega_2}_{Im(v_1)}
+\end{equation*}
+
+\lem[]{}{
+    If $\phi(t)\in\bbC$ is a solution of $\dot{x} = Ax$, then $Re(\phi(t))$ and $Im(\phi(t))$ are solutions of the same system and the general solution of $\dot{x} = Ax$ is
+    \begin{equation*}
+        X(t) = k_1 Re(\phi(t)) + k_2 Im(\phi(t))
+    \end{equation*}
+}
+\ex[]{}{
+    $\begin{cases*}
+        \dot{x} = 5x + \frac{5}{2}y\\
+        \dot{y} = -4x -y
+    \end{cases*}$\\
+
+    Step 1: Find A matrix
+    \begin{equation*}
+        A = \left[\begin{array}{cc}
+            5 & \frac{5}{2}\\
+            -4 & -1
+        \end{array}\right]
+    \end{equation*}
+    Step 2: Find eigenvalues
+    \begin{gather*}
+        P(\lambda) = \left|\begin{array}{cc}
+            5-\lambda & \frac{5}{2}\\
+            -4 & -1-\lambda
+        \end{array}\right| = (5-\lambda)(-1-\lambda)+10 = \lambda^2-4\lambda+5\\
+        P(\lambda) = 0 \Leftrightarrow \lambda = \frac{4\pm\sqrt{16-4(1)(5)}}{2}\Leftrightarrow \lambda = 2\pm i
+    \end{gather*}
+    Step 3: Find eigenvectors for $\lambda = 2+i$
+    \begin{gather*}
+        \left(\begin{array}{cc}
+            5-2-i & \frac{5}{2}\\
+            -4 & -1-2-i
+        \end{array}\right)\left(\begin{array}{c}
+            x\\
+            y
+        \end{array}\right) = \left(\begin{array}{c}
+            0\\
+            0
+        \end{array}\right) \Leftrightarrow\\
+        \left(\begin{array}{cc}
+            3-i & \frac{5}{2}\\
+            -4 & -3-i
+        \end{array}\right)\left(\begin{array}{c}
+            x\\
+            y
+        \end{array}\right) = \left(\begin{array}{c}
+            0\\
+            0
+        \end{array}\right) \Leftrightarrow\\
+        \begin{cases*}
+            (3-i)x + \frac{5}{2}y = 0\\
+            -4x -3y-iy = 0
+        \end{cases*}\Leftrightarrow\\
+        y = \frac{2}{5}(i-3)x\\
+        \Rightarrow E_{2+i} = \,<(5, 2i-6)>
+    \end{gather*}
+    General solution in $\bbC$:
+    \begin{align*}
+        X(t) & = e^{(2+i)t}\left(\begin{array}{c}
+            5\\
+            2i-6
+        \end{array}\right)\\
+        & = e^{2t}e^{it}\left(\begin{array}{c}
+            5\\
+            2i-6
+        \end{array}\right)\\
+        & = e^{2t}(\cos(t)+i\sin(t))\left(\begin{array}{c}
+            5\\
+            2i-6
+        \end{array}\right)\\
+        & = \left(\begin{array}{c}
+            5e^{2t}(\cos(t)+i\sin(t))\\
+            (2i-6)e^{2t}(\cos(t)+i\sin(t))
+        \end{array}\right)\\
+        & = \left(\begin{array}{c}
+            5e^{2t}\cos(t) + i5e^{2t}\sin(t)\\
+            e^{2t}(2i\cos(t)-2\sin(t)-6\cos(t)-6i\sin(t))
+        \end{array}\right)\\
+        & = \left(\begin{array}{c}
+            5e^{2t}\cos(t) + i5e^{2t}\sin(t)\\
+            e^{2t}(2\sin(t)-6\cos(t)) + e^{2t}(2\cos(t)-6\sin(t))i
+        \end{array}\right)
+    \end{align*}
+    Final general solution:
+    \begin{equation*}
+        X(t) = k_1\left(\begin{array}{c}
+            5e^{2t}\cos(t)\\
+            e^{2t}(2-\sin(t)-6\cos(t))
+        \end{array}\right) + k_2\left(\begin{array}{c}
+            5e^{2t}\sin(t)\\
+            e^{2t}(2\cos(t)-6\sin(t))
+        \end{array}\right)\quad k_1,k_2\in\bbR
+    \end{equation*}
+}
+
+\section{Equilibria and stability}
 
 
 %\dfn{Definition Topic}{Definition Statement}
