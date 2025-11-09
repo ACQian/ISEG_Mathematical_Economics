@@ -772,7 +772,240 @@ We then get the general solution,
 }
 
 \section{Equilibria and stability}
+General setup of the question,
+\begin{equation*}
+    \dot{X} = f(x)
+\end{equation*}
+where,
+\begin{itemize}
+    \item $x\in\bbR$, dependent on $t$
+    \item $f : \bbR^n\to\bbR^n$, a vector field in $\bbR^n$
+\end{itemize}
+\ex[]{}{
+    \begin{enumerate}
+        \item $\begin{cases*}
+            \dot{x} = 3x+6y\\
+            \dot{y} = 7x-y
+        \end{cases*}$\\
 
+        $f(x,y) = (3x+6y, 7x-y)\to$ vector field in $\bbR^2$
+        \item $\begin{cases*}
+            \dot{x} = e^xy-z\\
+            \dot{y} = y^2-x^2\sin(xy)\\
+            \dot{z} = 3x+y^2
+        \end{cases*}$\\
+
+        $f(x,y,z) = (e^xy-z, y^2-x^2\sin(xy), 3x+y^2)\to$ vector field in $\bbR^3$
+        \item $\begin{cases*}
+            \dot{x} = xe^t\\
+            \dot{y} = y^2\cos(xy)
+        \end{cases*}$\\
+
+        $f(x,y) = (xe^t, y^2\cos(xy))\to$ non-autonomous vector field in $\bbR^2$ because the first term depends on $t$
+    \end{enumerate}
+}
+\dfn[]{Equilibria}{
+    \begin{equation}
+        \dot{X} = f(x)\quad ,x_0\in\bbR^n
+    \end{equation}
+    We say that $x_0$ is an equilibria of (3.6) if $f(x_0) = 0$
+}
+\ex[]{Equilibria}{
+    \begin{enumerate}
+        \item $\dot{x} = 4x$
+        \begin{gather*}
+            f(x) = 4x\\
+            f(x) = 0 \Leftrightarrow x=0
+        \end{gather*}
+        Equilibria: $x=0$
+        \item $\dot{x} = x(1-x)$
+        \begin{gather*}
+            f(x) = x(1-x)\to\text{ logistic law}
+        \end{gather*}
+        Equilibria: $x=0$ and $x=1$
+        \item $\begin{cases*}
+            \dot{x} = 4x+7y\\
+            \dot{y} = -x + 8y
+        \end{cases*}$
+        \begin{gather*}
+            F(x,y) = (4x+7y, -x + 8y)\\
+            F(x,y) = \vec{0} \Leftrightarrow \begin{cases*}
+                x = 0\\
+                y = 0
+            \end{cases*}
+        \end{gather*}
+        Equilibria: $(0,0)$
+        \item $\begin{cases*}
+            \dot{x} = x+x^2+xy^2\\
+            \dot{y} = y + y^3
+        \end{cases*}$
+        \begin{equation*}
+            \begin{cases*}
+                x+x^2+xy^2 = 0\\
+                y + y^3 = 0
+            \end{cases*} \Leftrightarrow \begin{cases*}
+                x+x^2+xy^2 = 0\\
+                y(1+y^2) = 0
+            \end{cases*} \Leftrightarrow \begin{cases*}
+                x+x^2+xy^2 = 0\\
+                y = 0
+            \end{cases*}
+        \end{equation*}
+        Plugging in $y=0$ into the first equation we get,
+        \begin{equation*}
+            x + x^2 = 0 \Leftrightarrow x(1+x) = 0 \Leftrightarrow x = 0 \vee x = -1
+        \end{equation*}
+        Equilibria: $(0,0)$ and $(-1,0)$
+    \end{enumerate}
+}
+
+\dfn[]{Phase-portrait}{
+    Phase-portraits of differential equations is a geometric picture of the solution in the dependent variable when $t$, the independent variable, varies.
+}
+\ex[]{Phase-portrait}{
+    \begin{enumerate}
+        \item $\dot{x} = 4x$
+        \begin{equation*}
+            x(t) = ke^{4t},\; k\in\bbR
+        \end{equation*}
+        \begin{center}
+            \includegraphics[scale=0.4]{Images/32.png}
+            \includegraphics[scale=0.3]{Images/33.png}
+        \end{center}
+        Equilibrium corresponds to a point.
+        \item $\dot{x} = x(1-x)$
+        \begin{center}
+            \includegraphics[scale=0.4]{Images/34.png}
+            \includegraphics[scale=0.3]{Images/35.png}
+        \end{center}
+        \item $\dot{x} = Ax,\;A\in M_{2\times2}(\bbR)$ where $A$ has two real positive eigenvalues, and $\lambda_1\neq\lambda_2$
+        \begin{equation*}
+            \left(\begin{array}{c}
+                x(t)\\
+                y(t)
+            \end{array}\right) = c_1e^{\lambda_1t}v_1 + c_2e^{\lambda_2t}v_2,\; \lambda_1>\lambda_2
+        \end{equation*}
+        \begin{center}
+            \includegraphics[scale=0.4]{Images/36.png}
+        \end{center}
+    \end{enumerate}
+}
+\textbf{Case 1}: $A$ has two real eigenvalues, $\lambda_1<0<\lambda_2$
+\begin{center}
+    \includegraphics[scale=0.4]{Images/37.png}
+\end{center}
+
+\textbf{Case 2}: $A$ has a real eigenvalues $\lambda$ with geometric multiplicity of $1$, $\lambda>0$.
+\begin{center}
+    \includegraphics[scale=0.5]{Images/38.png}
+\end{center}
+
+\textbf{Case 3}: $A$ has complex eigenvalues $\alpha\pm i\omega,\;\alpha<0$
+\begin{center}
+    \includegraphics[scale=0.5]{Images/39.png}
+\end{center}
+
+\ex[]{Phase-portrait}{
+    \begin{enumerate}
+        \item $\begin{cases*}
+            \dot{x} = x+2y\\
+            \dot{y} = x+y
+        \end{cases*}$
+        \begin{equation*}
+            A = \left[\begin{array}{cc}
+                1 & 2\\
+                1 & 1
+            \end{array}\right]
+        \end{equation*}
+        \begin{itemize}
+            \item Eigenvalues: $\underbrace{1+\sqrt{2}}_{>0}\quad\underbrace{1-\sqrt{2}}_{<0}$
+            \item Eigenvectors: $(\sqrt{2},1)\; (-\sqrt{2}, 1)$
+        \end{itemize}
+        \begin{center}
+            \includegraphics[scale=0.5]{Images/40.png}
+        \end{center}
+        \item $\begin{cases*}
+            \dot{x} = -x\\
+            \dot{y} = x-y
+        \end{cases*}$
+        \begin{equation*}
+            A = \left[\begin{array}{cc}
+                -1 & 0\\
+                1 & -1
+            \end{array}\right]
+        \end{equation*}
+        \begin{itemize}
+            \item Eigenvalues: $\lambda = 0$
+            \item Eigenvectors: $(0,1)$
+        \end{itemize}
+        To find the direction of the graph,
+        \begin{equation*}
+            (x,y) = (1,0) \Leftrightarrow(\dot{x}, \dot{y}) = (-1,1)
+        \end{equation*}
+        \begin{center}
+            \includegraphics[scale=0.4]{Images/41.png}
+        \end{center}
+        So we get the final graph,
+        \begin{center}
+            \includegraphics[scale=0.5]{Images/42.png}
+        \end{center}
+        \item $\begin{cases*}
+            \dot{x} = 2x+y\\
+            \dot{y} = -2x+4y
+        \end{cases*}$
+        \begin{itemize}
+            \item Eigenvalues: $\lambda = 3\pm i$
+            \item $e^{3t}(\cdots)$ positive so going away from the center spiralling
+        \end{itemize}
+        Again to find the direction of the graph,
+        \begin{equation*}
+            (x,y) = (1,0) \Leftrightarrow (\dot{x}, \dot{y}) = (2,-2)
+        \end{equation*}
+        \begin{center}
+            \includegraphics[scale=0.4]{Images/43.png}
+        \end{center}
+        So we get the final graph,
+        \begin{center}
+            \includegraphics[scale=0.5]{Images/44.png}
+        \end{center}
+    \end{enumerate}
+}
+
+Suppose we have a system $\begin{cases*}
+    \dot{x} = x^2+x+xy^2\\
+    \dot{y} = y+y^3
+\end{cases*}$, with respect to the system, we know the equilibrium. 
+But it is very difficult to trace the phase portrait. 
+However, it is possible to classify the behavior of the solution near the equilibria.
+\begin{center}
+    \includegraphics[scale=0.3]{Images/45.png}
+\end{center}
+\dfn[]{Stability according to Lyapunov}{
+    Conditions:
+    \begin{itemize}
+        \item $X = F(x)$
+        \item $x_0$ is an equilibria
+    \end{itemize}
+    Then,
+    \begin{enumerate}
+        \item We say that $x_0$ is stable if there exist two neighborhooods of $x_0$, $u$ and $v$ such that $u\subset v$,
+        and for all $x\in u$, $\phi(t,x)\in v$, $\forall t\in\bbR_0^+$.
+        \item We say that $x_0$ is asymptotically stable if $x_0$ is stable and for all $x$ in a small neighborhood of $x_0$,
+        its solution tends to $x_0$.
+        \item We say that $x_0$ is unstable if it is not stable.
+    \end{enumerate}
+}
+\thm[]{Lyapunov}{
+    Condition:
+    \begin{itemize}
+        \item $x_0$ is an equilibrium of $X=F(x)$
+    \end{itemize}
+    Then,
+    \begin{enumerate}
+        \item If all equilibrium of $\partial f|_{x_0}$ have negative real part, then $x_0$ is asymptotically stable.
+        \item If at least one eigenvalue has positive real part then $x_0$ is unstable.
+    \end{enumerate}
+}
 
 %\dfn{Definition Topic}{Definition Statement}
 %\thm{Theorem Name}{Theorem Statement}
