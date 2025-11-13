@@ -976,7 +976,8 @@ Suppose we have a system $\begin{cases*}
     \dot{y} = y+y^3
 \end{cases*}$, with respect to the system, we know the equilibrium. 
 But it is very difficult to trace the phase portrait. 
-However, it is possible to classify the behavior of the solution near the equilibria.
+However, it is possible to classify the behavior of the solution near the equilibria.\\
+
 \begin{center}
     \includegraphics[scale=0.3]{Images/45.png}
 \end{center}
@@ -1005,6 +1006,251 @@ However, it is possible to classify the behavior of the solution near the equili
         \item If all equilibrium of $\partial f|_{x_0}$ have negative real part, then $x_0$ is asymptotically stable.
         \item If at least one eigenvalue has positive real part then $x_0$ is unstable.
     \end{enumerate}
+}
+
+\ex[]{Phase-portrait}{
+    $\begin{cases*}
+        \dot{x} = -y\\
+        \dot{y} = x\\
+        x(0) = 1,\; y(\frac{\pi}{2})=1
+    \end{cases*}$
+    \begin{equation*}
+        \left[\begin{array}{c}
+            \dot{x}\\
+            \dot{y}
+        \end{array}\right] = \left[\begin{array}{cc}
+            0 & -1\\
+            1 & 0
+        \end{array}\right]\left[\begin{array}{cc}
+            x\\y
+        \end{array}\right]
+    \end{equation*}
+    Eigenvalues:
+    \begin{gather*}
+        p(\lambda)=|A-\lambda Id| = \left|\begin{array}{cc}
+            -\lambda & -1\\
+            1 & -\lambda
+        \end{array}\right| = \lambda^2+1\\
+        p(\lambda)=0 \Leftrightarrow \lambda^2+1 = 0 \Leftrightarrow \lambda = \pm i
+    \end{gather*}
+    Eigenvectors associated to $i$:
+    \begin{gather*}
+        \left[\begin{array}{cc}
+            -i & -1\\
+            1 & -i
+        \end{array}\right] \left[\begin{array}{c}
+            x \\ y
+        \end{array}\right] = \left[\begin{array}{c}
+            0 \\ 0
+        \end{array}\right] \Leftrightarrow\\
+        \begin{cases*}
+            -ix-y=0\\
+            x-iy=0
+        \end{cases*} \Leftrightarrow \begin{cases*}
+            -i(iy)-y = 0\\ x = iy
+        \end{cases*} \Leftrightarrow \begin{cases*}
+            y-y=0\\ x=iy
+        \end{cases*}\\
+        \Rightarrow E_i = <(i,1)>
+    \end{gather*}
+    Solution:
+    \begin{equation*}
+        e^{it}\left[\begin{array}{c}
+            x\\y
+        \end{array}\right] = \cos(t)+i\sin(t)\left[\begin{array}{c}
+            i\\1
+        \end{array}\right] = \left[\begin{array}{c}
+            i\cos(t)-\sin(t)\\\cos(t)+i\sin(t)
+        \end{array}\right] = \underbrace{\left[\begin{array}{c}
+            -\sin(t)\\\cos(t)
+        \end{array}\right]}_{Re} + \underbrace{i\left[\begin{array}{c}
+            \cos(t)\\\sin(t)
+        \end{array}\right]}_{Im}
+    \end{equation*}
+    General solution:
+    \begin{equation*}
+        \left[\begin{array}{c}
+            x(t)\\y(t)
+        \end{array}\right] = k_1\left[\begin{array}{c}
+            -\sin(t)\\\cos(t)
+        \end{array}\right]+k_2\left[\begin{array}{c}
+            \cos(t)\\\sin(t)
+        \end{array}\right],\quad k_1,k_2\in\bbR
+    \end{equation*}
+    Using the initial conditions:
+    \begin{equation*}
+        \begin{cases*}
+            x(0) = 1\\ y(\frac{\pi}{2})=1
+        \end{cases*}\Leftrightarrow \begin{cases*}
+            1=k_1\times 0 + k_2\times 1\\1 = k_1\times 0 + k_2\times 1
+        \end{cases*}\Leftrightarrow \begin{cases*}
+            k_2=1\\k_1\in\bbR
+        \end{cases*}
+    \end{equation*}
+    Final solution:
+    \begin{equation*}
+        \therefore \left[\begin{array}{c}
+            x(t)\\y(t)
+        \end{array}\right] = k_1\left[\begin{array}{c}
+            -\sin(t)\\\cos(t)
+        \end{array}\right]+\left[\begin{array}{c}
+            \cos(t)\\\sin(t)
+        \end{array}\right],\quad k_1\in\bbR
+    \end{equation*}
+    If we change the initial condition to $x(0) = 1,\; y(0)=0$,
+    \begin{equation*}
+        \begin{cases*}
+            x(0)=1\\y(0)=0
+        \end{cases*} \Leftrightarrow \begin{cases*}
+            1=k_1\times 0+k_2\times 1\\0=k_1\times 1+k_2\times 0
+        \end{cases*} \Leftrightarrow \begin{cases*}
+            k_2=1\\k_1=0
+        \end{cases*}
+    \end{equation*}
+    Final solution:
+    \begin{equation*}
+        \left[\begin{array}{c}
+            x(t)\\y(t)
+        \end{array}\right] = \left[\begin{array}{c}
+            \cos(t)\\\sin(t)
+        \end{array}\right]
+    \end{equation*}
+    To find the direction of phase-portrait:
+    \begin{equation*}
+        (3,0)\Rightarrow \dot{x} = 0,\; \dot{y} = 3
+    \end{equation*}
+    Phase-portrait:
+    \begin{center}
+        \includegraphics[scale=0.5]{Images/46.png}
+    \end{center}
+}
+
+\textbf{Remark}: When $\alpha=0$ (real part of the eigenvalues), the curves of the phase-portrait
+of any linear system are closed.
+
+\ex[]{Phase-portrait}{
+    $\begin{cases*}
+        \dot{x}=x+2y\\\dot{y}=2x+4y
+    \end{cases*}$
+    Eigenvalues:
+    \begin{gather*}
+        A = \left[\begin{array}{cc}
+            1 & 2\\2 & 4
+        \end{array}\right]\\
+        P(\lambda) = (1-\lambda)(4-\lambda)-4 = 4-5\lambda+\lambda^2-4 = \lambda^2-5\lambda = \lambda(\lambda-5)\\
+        P(\lambda) = 0 \Leftrightarrow \lambda(\lambda-5) = 0 \Leftrightarrow \lambda = 0 \vee \lambda = 5
+    \end{gather*}
+    Eigenvectors:
+    \begin{gather*}
+        \left[\begin{array}{cc}
+            -4 & 2\\2 & -1
+        \end{array}\right]\left[\begin{array}{c}
+            x\\y
+        \end{array}\right] = \left[\begin{array}{c}
+            0\\0
+        \end{array}\right]\Leftrightarrow
+        \begin{cases*}
+            -4+2y=0\\2x-y=0
+        \end{cases*}\Leftrightarrow 2x=y\\
+        \Rightarrow E_5 = <(1,2)>\\
+        \begin{cases*}
+            x+2y=0\\2x+4y=0
+        \end{cases*}\Leftrightarrow x=-2y\\
+        \Rightarrow E_0 = <(-2,1)>
+    \end{gather*}
+    General solution:
+    \begin{equation*}
+        \left[\begin{array}{c}
+            x(t)\\y(t)
+        \end{array}\right] = k_1 \underbrace{e^{0t}}_{=1}\left[\begin{array}{c}
+            -2\\1
+        \end{array}\right] + k_2 e^{5t}\left[\begin{array}{c}
+            1\\2
+        \end{array}\right],\quad k_1,k_2\in\bbR
+    \end{equation*}
+    Phase-portrait:
+    \begin{center}
+        \includegraphics[scale=0.5]{Images/47.png}
+    \end{center}
+}
+
+Now consider the general set up:
+\begin{equation*}
+    \dot{X} = f(X),\quad x\in\bbR^n
+\end{equation*}
+\begin{itemize}
+    \item differential equation in $\bbR^n$
+    \item $f: \bbR^n\to\bbR^n$ vector field
+\end{itemize}
+Consider now the initial value problem
+\begin{equation}
+    \begin{cases*}
+        \dot{x} = f(x_0)\\
+        x(t_0) = x_0 \in\bbR^n,\quad t_0\in\bbR
+    \end{cases*}
+\end{equation}
+
+\thm[]{Picard: Existance and uniqueness of solution}{
+    If $f$ is Lipschitz with respect to $x$, 
+    then (3.7) has a unique solution in the neighborhood of $t_0$
+}
+
+In this course, we are going to consider $c^1$ maps, which is a stronger condition than Lipschitz.
+
+\dfn[]{Linearization}{
+    Suppose that $\dot{x}=f(x)$ os a system of non-linear differential equation in $\bbR^n$
+    and $x_0$ is an equilibrium of $f$, $f(x_0) = \vec{0}$.\\
+
+    We say that
+    \begin{equation*}
+        \dot{x} = \underbrace{Df(x_0)}_{\text{Jacobian}}(x-x_0)
+    \end{equation*}
+    is the linearization of $f$ at $x_0$.
+}
+\ex[]{Linearlization}{
+    $\begin{cases*}
+        \dot{x}=-y+xy^2\\\dot{y}=x-xy
+    \end{cases*}$\\
+
+    Vector field:
+    \begin{equation*}
+        f(x,y) = (-y+xy^2 ; x-xy)
+    \end{equation*}
+    Knowing $f(0,0) = (0,0)$ so $(0,0)$ is an equilibrium.
+    \begin{gather*}
+        J_f(x,y) = \left[\begin{array}{cc}
+            y^2 & -1+2xy\\1-y & -x
+        \end{array}\right]\\
+        J_f(0,0) = \left[\begin{array}{cc}
+            0 & -1\\1 & 0
+        \end{array}\right]\\
+        \dot{X} = \left[\begin{array}{cc}
+            0 & -1\\1 & 0
+        \end{array}\right]X
+    \end{gather*}
+    Thus,
+    \begin{equation*}
+        \left[\begin{array}{c}
+            \dot{x}\\\dot{y}
+        \end{array}\right] = \left[\begin{array}{c}
+            -y\\x
+        \end{array}\right]
+    \end{equation*}
+    is the linearization of $f$ at $(0,0)$
+}
+
+\dfn[]{Hyperbolic}{
+    Conditions:
+    \begin{itemize}
+        \item $\dot{x}=f(x)$ os system of differential equations
+        \item $x_0$ is an equilibrium, $f(x_0) = \vec{0}$
+    \end{itemize}
+    We say that $x_0$ is hyperbolic if the eigenvalues of $Df(x_0)$ do not have zero real part.
+}
+\thm[]{Hautman-Grobman}{
+    If $\dot{x}=f(x)$ is a system of differential equations and $x_0$ is a hyperbolic equilibrium, 
+    then the qualitative behavior in the phase-portrait of $\dot{x}=f(x)$ in the neighborhood of $x_0$
+    is the same to that of its linearization.
 }
 
 %\dfn{Definition Topic}{Definition Statement}
